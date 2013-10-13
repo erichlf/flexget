@@ -1,0 +1,16 @@
+rss: # TorLock (TV)
+  url: 'http://www.torlock.com/television/rss.xml'
+  silent: yes
+rss: # Torrentz (Verified only, TV)
+  url: 'http://torrentz.eu/feed_verified?q=tv'
+  silent: yes
+rss: # EZRSS
+  url: 'http://ezrss.it/feed/'
+  silent: yes
+rss: # Karmorra (All)
+  url: 'http://showrss.karmorra.info/feeds/all.rss'
+  silent: yes
+rss: # BT-Chat (EZTV)
+  url: 'http://rss.bt-chat.com/?group=3'
+  silent: yes
+

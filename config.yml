@@ -1,0 +1,88 @@
+presets:
+  global:
+    include: [private/transmission.yml]
+    regexp:
+      reject:
+        - \btrailer\b: {from: title}
+
+    content_filter:
+      require:
+        - '*.avi'
+        - '*.mkv'
+        - '*.mpg'
+        - '*.mp4'
+        - '*.r0*'
+        - '*.rar'
+      reject:
+        - 'password.txt'
+        - '*.wmv'
+    # Limit the frequency of requests to domains so they don't complain about
+    # using a bot
+    domain_delay:
+      bt-chat.com: 5 seconds
+      torrentz.eu: 5 seconds
+    # The Pirate Bay ssl certs always fail
+    verify_ssl_certificates: no
+    # Size and seed restrictions require real torrents
+    magnets: no
+  tv:
+    include: [series.yml, tvrss.yml, private/tvrss.yml]
+#    exists_series: 
+#      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Series/ 
+#      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
+#      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch.or.Move/
+    thetvdb_lookup: yes
+    set:
+      timeframe: 5 days
+      label: tv
+
+  movies:
+    include: [moviesrss.yml, private/moviesrss.yml]
+    imdb_lookup: yes
+#    seen_movies: strict
+    proper_movies: yes
+    exists_movie: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
+    content_size:
+      max: 3000
+      strict: yes
+    set:
+      addpaused: yes
+      quality: 480p+ dvdscr+ 
+      target: 720p ac3+  
+      timeframe: 12 hours
+
+tasks:
+  Movies:
+    preset: 
+      - global
+      - movies
+
+  TVShows:
+    priority: 1
+    preset: 
+      - global
+      - tv
+    series:
+      settings:
+        Best:
+          target: 720p hdtv+
+          quality: <=1080p hdtv+
+          timeframe: 15 minutes
+        Better:
+          target: 480p dvdscr+
+          quality: <=720p webrip+
+          timeframe: 15 minutes
+        Avereage:
+          target: 480p
+          quality: preair+
+          timeframe: 15 minutes
+
+  MovieQueue:
+    include: [private/trakt.yml]
+    preset: no_global
+    interval: 1 days
+    accept_all: yes
+    queue_movies: 
+      quality: 480p+
+      force: yes
+    movie_queue: yes

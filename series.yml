@@ -1,0 +1,38 @@
+series:
+  Best:
+    - The Big Bang Theory:
+        begin: S07E01
+    - Doctor Who (2005):
+        begin: S07E01
+    - Downton Abbey:
+        begin: S04E01
+    - Game of Thrones:
+        begin: S04E01
+    - Parenthood:
+        begin: S05E01
+    - Modern Family:
+        begin: S05E01
+  Better:
+    - Boardwalk Empire:
+        begin: S04E04
+    - Sherlock:
+        begin: S03E01
+  Average:
+    - Bob's Burgers
+    - Brew Dogs
+    - Chopped
+    - Homeland:
+        begin: S03E02
+    - How I Met Your Mother:
+        begin: S09E01
+    - Junior Doctors
+    - New Girl:
+        begin: S03E01
+    - The Michael J. Fox Show
+    - Mom
+    - Survivormans Secrets of Survival
+    - The Graham Norton Show
+    - Three Day Nanny
+    - Top Gear:
+    # Do not, under any circumstances, download the US version, it sucks
+        name_regexp: ^top.gear(?!.us)

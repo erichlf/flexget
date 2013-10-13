@@ -1,0 +1,4 @@
+rss: #Movies from demonoid
+  url: 'http://www.d2.vu/rss/1.xml'
+  silent: yes
+
