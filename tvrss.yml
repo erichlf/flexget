@@ -1,3 +1,9 @@
+rss: #SD TV Shows on piratebay
+  url: 'http://rss.thepiratebay.sx/205'
+  silent: yes
+rss: #SH TV Shows on piratebay
+  url: 'http://rss.thepiratebay.sx/208'
+  silent: yes
 rss: # TorLock (TV)
   url: 'http://www.torlock.com/television/rss.xml'
   silent: yes
