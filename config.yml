@@ -27,10 +27,10 @@ presets:
     magnets: no
   tv:
     include: [series.yml, tvrss.yml, private/tvrss.yml]
-#    exists_series: 
-#      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Series/ 
-#      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
-#      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch.or.Move/
+    exists_series: 
+      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Series/ 
+      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
+      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch/
     thetvdb_lookup: yes
     set:
       timeframe: 5 days
@@ -41,7 +41,9 @@ presets:
     imdb_lookup: yes
 #    seen_movies: strict
     proper_movies: yes
-    exists_movie: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
+    exists_movie: 
+      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
+      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch/
     content_size:
       max: 3000
       strict: yes
