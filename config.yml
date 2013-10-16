@@ -31,6 +31,20 @@ presets:
     set:
       timeframe: 5 days
       label: tv
+    series:
+      settings:
+        Best:
+          target: 720p hdtv+
+          quality: <=1080p hdtv+
+          timeframe: 15 minutes
+        Better:
+          target: 480p dvdscr+
+          quality: <=720p webrip+
+          timeframe: 15 minutes
+        Avereage:
+          target: 480p
+          quality: preair+
+          timeframe: 15 minutes
 
   tv-private:
     include: [private/tvrss.yml]
@@ -89,37 +103,39 @@ tasks:
       - movies-public
       - movies-private
 
-  TVShows:
+  TVPublic:
     priority: 1
     preset: 
       - global
       - tv
       - tv-public
+
+  TVPrivate:
+    priority: 2
+    preset: 
+      - global
+      - tv
       - tv-private
-    series:
-      settings:
-        Best:
-          target: 720p hdtv+
-          quality: <=1080p hdtv+
-          timeframe: 15 minutes
-        Better:
-          target: 480p dvdscr+
-          quality: <=720p webrip+
-          timeframe: 15 minutes
-        Avereage:
-          target: 480p
-          quality: preair+
-          timeframe: 15 minutes
 
   TVPremieres:
     preset: premieres
 
-  MovieQueue:
+  MoviesKeep:
+    include: [private/traktKeep.yml]
+    preset: no_global
+    interval: 1 days
+    accept_all: yes
+    queue_movies: 
+      force: yes
+      quality: 720p
+    movie_queue: yes
+
+  MoviesNew:
     include: [private/trakt.yml]
     preset: no_global
     interval: 1 days
     accept_all: yes
     queue_movies: 
-      quality: 480p+
       force: yes
+      quality: r5+
     movie_queue: yes
