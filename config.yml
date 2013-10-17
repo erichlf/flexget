@@ -124,7 +124,6 @@ tasks:
     include: [private/traktKeep.yml]
     preset: no_global
     interval: 1 days
-    accept_all: yes
     queue_movies: 
       force: yes
       quality: 720p
@@ -134,7 +133,6 @@ tasks:
     include: [private/trakt.yml]
     preset: no_global
     interval: 1 days
-    accept_all: yes
     queue_movies: 
       force: yes
       quality: r5+
