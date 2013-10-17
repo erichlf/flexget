@@ -4,7 +4,6 @@ presets:
     regexp:
       reject:
         - \btrailer\b: {from: title}
-
     content_filter:
       require:
         - '*.avi'
@@ -74,12 +73,11 @@ presets:
 
   movies:
     imdb_lookup: yes
-#    seen_movies: strict
     proper_movies: yes
     exists_movie: 
       - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/
     content_size:
-      max: 3000
+      max: 3500
       strict: yes
     set:
       quality: dvdscr+ 
@@ -102,6 +100,8 @@ tasks:
       - movies
       - movies-public
       - movies-private
+    movie_queue: yes
+    seen: local
 
   TVPublic:
     priority: 1
@@ -130,7 +130,7 @@ tasks:
       quality: 720p
     movie_queue: yes
 
-  MoviesNew:
+  MoviesWatch:
     include: [private/trakt.yml]
     preset: no_global
     interval: 1 days
