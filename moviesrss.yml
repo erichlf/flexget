@@ -1,2 +1,2 @@
 inputs:
-
+  - rss: { url: 'http://rss.bt-chat.com/?cat=4', silent: yes, group_links: yes }
