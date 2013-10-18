@@ -115,7 +115,7 @@ tasks:
     preset: 
       - global
       - movies
-      - movies-public
+#      - movies-public
       - movies-private
     movie_queue: yes
     seen: local
