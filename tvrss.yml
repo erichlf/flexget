@@ -1,7 +1,7 @@
 inputs:
-  - rss: { url: 'http://www.torlock.com/television/rss.xml', silent: yes, all_entries: no, group_links: yes }
-  - rss: { url: 'http://torrentz.eu/feed_verified?q=tv', silent: yes, all_entries: no, group_links: yes }
-  - rss: {url: 'http://ezrss.it/feed/', silent: yes, all_entries: no, group_links: yes }
-  - rss: { url: 'http://showrss.karmorra.info/feeds/all.rss', silent: yes, all_entries: no, group_links: yes }
-  - rss: { url: 'http://rss.bt-chat.com/?group=3', silent: yes, all_entries: no, group_links: yes }
+  - rss: { url: 'http://www.torlock.com/television/rss.xml', silent: yes, group_links: yes }
+  - rss: { url: 'http://torrentz.eu/feed_verified?q=tv', silent: yes, group_links: yes }
+  - rss: {url: 'http://ezrss.it/feed/', silent: yes, group_links: yes }
+  - rss: { url: 'http://showrss.karmorra.info/feeds/all.rss', silent: yes, group_links: yes }
+  - rss: { url: 'http://rss.bt-chat.com/?group=3', silent: yes, group_links: yes }
 

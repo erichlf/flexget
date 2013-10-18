@@ -18,17 +18,23 @@ series:
     - Sherlock:
         begin: S03E01
   Average:
+    - Ben and Holly's Little Kingdom
     - Bob's Burgers
+    - Charlie and Lola
     - Chopped
+    - The Graham Norton Show
     - Homeland:
         begin: S03E02
     - How I Met Your Mother:
         begin: S09E01
     - Junior Doctors
+    - Mickey Mouse Clubhouse
+    - Mom
     - New Girl:
         begin: S03E01
-    - Mom
-    - The Graham Norton Show
+    - Peppa Pig
+    - Pocoyo
+    - Shaun the Sheep
     - Three Day Nanny
     - Top Gear:
     # Do not, under any circumstances, download the US version, it sucks

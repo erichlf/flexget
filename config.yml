@@ -94,15 +94,6 @@ presets:
       ratio: 0.5
 
 tasks:
-  Movies:
-    preset: 
-      - global
-      - movies
-      - movies-public
-      - movies-private
-    movie_queue: yes
-    seen: local
-
   TVPublic:
     priority: 1
     preset: 
@@ -119,6 +110,15 @@ tasks:
 
   TVPremieres:
     preset: premieres
+
+  Movies:
+    preset: 
+      - global
+      - movies
+      - movies-public
+      - movies-private
+    movie_queue: yes
+    seen: local
 
   MoviesKeep:
     include: [private/traktKeep.yml]
