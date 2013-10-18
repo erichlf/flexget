@@ -1,3 +1,2 @@
 inputs:
-  - rss: { url: 'http://rss.thepiratebay.sx/201', silent: yes, group_links: yes }
 
