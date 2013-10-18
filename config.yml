@@ -89,7 +89,7 @@ presets:
       ratio: 2.0
 
   movies-public:
-    include: [moviesrss.yml]
+#    include: [moviesrss.yml]
     set: 
       ratio: 0.5
 
