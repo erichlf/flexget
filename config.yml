@@ -36,11 +36,11 @@ presets:
           quality: <=1080p hdtv+
           timeframe: 15 minutes
         Better:
-          target: 480p dvdscr+
+          target: <720p dvdscr+
           quality: <=720p webrip+
           timeframe: 15 minutes
         Avereage:
-          target: 480p
+          target: 720p
           quality: preair+
           timeframe: 15 minutes
 
@@ -57,7 +57,7 @@ presets:
   premieres:
     include: [tvrss.yml]
     series_premiere: yes
-    quality: <=480p
+    quality: <720p
     regexp:
       reject:
         - game show
