@@ -15,6 +15,7 @@ series:
   Better:
     - Boardwalk Empire:
         begin: S04E04
+    - The Doctors Revisited
     - The Escape Artist
     - Sherlock:
         begin: S03E01
@@ -25,6 +26,8 @@ series:
     - Chopped
     - Educating Yorkshire:
         begin: S01E07
+    - Gordon Ramsays Home Cooking:
+        begin: S01E11
     - The Graham Norton Show
     - Homeland:
         begin: S03E02
@@ -33,6 +36,8 @@ series:
     - How I Met Your Mother:
         begin: S09E01
     - Junior Doctors
+    - Karl Pilkington The Moaning of Life
+    - Mickey Mouse
     - Mickey Mouse Clubhouse
     - Mom
     - New Girl:
