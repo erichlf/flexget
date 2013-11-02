@@ -109,14 +109,24 @@ tasks:
       - tv-private
 
 #  TVPremieres:
+#    priority: 99
 #    preset: premieres
 
-  Movies:
+  MoviesPrivate:
+    priority: 4
     preset: 
       - global
       - movies
-#      - movies-public
       - movies-private
+    movie_queue: yes
+    seen: local
+
+  MoviesPublic:
+    priority: 3
+    preset: 
+      - global
+      - movies
+      - movies-public
     movie_queue: yes
     seen: local
 
