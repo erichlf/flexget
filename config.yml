@@ -27,6 +27,8 @@ presets:
       - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
       - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch/
     thetvdb_lookup: yes
+    if:
+      - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
     series:
