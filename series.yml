@@ -15,7 +15,6 @@ series:
   Better:
     - Boardwalk Empire:
         begin: S04E04
-    - The Doctors Revisited
     - The Escape Artist
     - Sherlock:
         begin: S03E01
@@ -40,6 +39,9 @@ series:
     - Mom
     - New Girl:
         begin: S03E01
+    - One Born:
+        name_regexp:
+          - ^One.Born.+
     - Peppa Pig
     - Phineas and Ferb
     - Pocoyo
