@@ -54,7 +54,7 @@ presets:
   tv-public:
     include: [tvrss.yml]
     set:
-      ratio: 0.5
+      ratio: 0.0
 
   premieres:
     include: [tvrss.yml]
@@ -71,7 +71,7 @@ presets:
       - tvdb_ep_air_date < now - timedelta(days=1): reject
     set:
       label: premiere
-      ratio: 0.5
+      ratio: 0.0
 
   movies:
     imdb_lookup: yes
