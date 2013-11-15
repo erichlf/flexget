@@ -42,7 +42,7 @@ presets:
           quality: <=720p webrip+
           timeframe: 15 minutes
         Avereage:
-          target: 720p
+          target: <720p
           quality: preair+
           timeframe: 15 minutes
 
