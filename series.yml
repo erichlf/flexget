@@ -4,25 +4,26 @@ series:
         begin: S07E01
     - Doctor Who (2005):
         begin: S07E01
-    - Downton Abbey:
-        begin: S04E01
     - Game of Thrones:
         begin: S03E01
-    - Parenthood:
-        begin: S05E01
+  Better:
+    - Downton Abbey:
+        begin: S04E01
+    - Masters of Sex
     - Modern Family:
         begin: S05E01
-  Better:
-    - Boardwalk Empire:
-        begin: S04E04
-    - Masters of Sex
+    - Parenthood:
+        begin: S05E01
     - Sherlock:
         begin: S03E01
   Average:
     - Ben and Holly's Little Kingdom
+    - Boardwalk Empire:
+        begin: S04E04
     - Bob's Burgers
     - Charlie and Lola
     - Chopped
+    - Disney Animated Shorts
     - Educating Yorkshire:
         begin: S01E07
     - The Graham Norton Show
@@ -33,8 +34,6 @@ series:
     - How I Met Your Mother:
         begin: S09E01
     - Junior Doctors
-    - Karl Pilkington The Moaning of Life
-    - Mickey Mouse
     - Mickey Mouse Clubhouse
     - Mom
     - New Girl:
