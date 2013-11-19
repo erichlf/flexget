@@ -114,15 +114,6 @@ tasks:
 #    priority: 99
 #    preset: premieres
 
-  MoviesPrivate:
-    priority: 4
-    preset: 
-      - global
-      - movies
-      - movies-private
-    movie_queue: yes
-    seen: local
-
   MoviesPublic:
     priority: 3
     preset: 
@@ -132,13 +123,21 @@ tasks:
     movie_queue: yes
     seen: local
 
+  MoviesPrivate:
+    priority: 4
+    preset: 
+      - global
+      - movies
+      - movies-private
+    movie_queue: yes
+    seen: local
+
   MoviesKeep:
     include: [private/traktKeep.yml]
     preset: no_global
     accept_all: yes
     interval: 1 days
     queue_movies: 
-      force: yes
       quality: 720p
 
   MoviesWatch:
@@ -147,5 +146,4 @@ tasks:
     accept_all: yes
     interval: 1 days
     queue_movies: 
-      force: yes
       quality: r5+
