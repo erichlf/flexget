@@ -49,3 +49,5 @@ series:
     - Top Gear:
     # Do not, under any circumstances, download the US version, it sucks
         name_regexp: ^top.gear(?!.us)
+    - A Young Doctors Notebook:
+        begin: S02E02
