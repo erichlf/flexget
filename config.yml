@@ -139,6 +139,7 @@ tasks:
     interval: 1 days
     queue_movies: 
       quality: 720p
+      force: no
 
   MoviesWatch:
     include: [private/trakt.yml]
@@ -147,3 +148,4 @@ tasks:
     interval: 1 days
     queue_movies: 
       quality: r5+
+      force: no
