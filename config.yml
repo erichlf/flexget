@@ -86,7 +86,7 @@ presets:
     set:
       quality: dvdscr+ 
       target: 720p ac3+  
-      path: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/TV/
+      path: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/Movies/
 
   movies-private:
     include: [private/moviesrss.yml]
