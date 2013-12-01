@@ -33,6 +33,7 @@ presets:
     set:
       label: tv
       path: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/TV/
+      temp: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
     series:
       settings:
         Best:
@@ -87,6 +88,7 @@ presets:
       quality: dvdscr+ 
       target: 720p ac3+  
       path: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/Movies/
+      temp: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
 
   movies-private:
     include: [private/moviesrss.yml]
