@@ -77,7 +77,6 @@ presets:
       ratio: 0.0
 
   movies:
-    imdb_lookup: yes
     proper_movies: yes
     exists_movie: 
       - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/
