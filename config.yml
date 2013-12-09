@@ -19,7 +19,7 @@ presets:
     verify_ssl_certificates: no
     # Size and seed restrictions require real torrents
     magnets: no
-  
+
   tv:
     include: [series.yml]
     exists_series: 
@@ -88,6 +88,12 @@ presets:
       quality: dvdscr+ 
       target: 720p ac3+  
 
+  movies-keep:
+    include: [private/traktKeep.yml]
+
+  movies-watch:
+    include: [private/traktWatch.yml]
+
   movies-private:
     include: [private/moviesrss.yml]
     set: 
@@ -97,6 +103,12 @@ presets:
     include: [moviesrss.yml]
     set: 
       ratio: 0.0
+
+  clean-watch:
+    include: [private/cleanWatch.yml]
+
+  clean-keep:
+    include: [private/cleanKeep.yml]
 
 tasks:
   TVPublic:
@@ -136,8 +148,10 @@ tasks:
     seen: local
 
   MoviesKeep:
-    include: [private/traktKeep.yml]
-    preset: no_global
+    preset: 
+      - no_global
+      - movies-keep
+      - clean-keep
     accept_all: yes
     interval: 1 days
     queue_movies: 
@@ -145,8 +159,10 @@ tasks:
       force: no
 
   MoviesWatch:
-    include: [private/trakt.yml]
-    preset: no_global
+    preset: 
+      - no_global
+      - movies-watch
+      - clean-watch
     accept_all: yes
     interval: 1 days
     queue_movies: 
