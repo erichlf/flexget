@@ -36,15 +36,18 @@ presets:
         Best:
           target: 720p hdtv+
           quality: <=1080p hdtv+
-          timeframe: 15 minutes
+          timeframe: 30 minutes
+          propers: no
         Better:
           target: <720p dvdscr+
           quality: <=720p webrip+
-          timeframe: 15 minutes
+          timeframe: 30 minutes
+          propers: no
         Avereage:
           target: <720p
           quality: preair+
-          timeframe: 15 minutes
+          timeframe: 30 minutes
+          propers: no
 
   tv-private:
     include: [private/tvrss.yml]
