@@ -2,13 +2,13 @@ series:
   Best:
     - The Big Bang Theory:
         begin: S07E01
-    - Doctor Who (2005):
-        begin: S07E01
+#    - Doctor Who (2005):
+#        begin: S07E01
     - Game of Thrones:
         begin: S03E01
   Better:
-    - Downton Abbey:
-        begin: S04E01
+#    - Downton Abbey:
+#        begin: S04E01
     - Masters of Sex
     - Modern Family:
         begin: S05E01

@@ -15,10 +15,12 @@ presets:
       reject:
         - 'password.txt'
         - '*.wmv'
+        - '*CD1*'
     # The Pirate Bay ssl certs always fail
     verify_ssl_certificates: no
     # Size and seed restrictions require real torrents
     magnets: no
+    download: yes
 
   tv:
     include: [series.yml]
@@ -31,6 +33,8 @@ presets:
       - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
+      path: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch/TV
+      temp: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
     series:
       settings:
         Best:
@@ -86,9 +90,14 @@ presets:
     set:
       quality: dvdscr+ 
       target: 720p ac3+  
+      label: Movies
+      path: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch/Movies
+      temp: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
 
   movies-keep:
     include: [private/traktKeep.yml]
+    set:
+      label: keep
 
   movies-watch:
     include: [private/traktWatch.yml]
