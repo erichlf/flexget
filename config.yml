@@ -8,6 +8,7 @@ presets:
       require:
         - '*.avi'
         - '*.mkv'
+        - '*.m4v'
         - '*.mpg'
         - '*.mp4'
         - '*.r0*'
