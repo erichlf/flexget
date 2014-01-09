@@ -1,4 +1,4 @@
-presets:
+templates:
   global:
     include: [private/transmission.yml]
     regexp:
@@ -122,25 +122,25 @@ presets:
 tasks:
   TVPublic:
     priority: 1
-    preset: 
+    template: 
       - global
       - tv
       - tv-public
 
   TVPrivate:
     priority: 2
-    preset: 
+    template: 
       - global
       - tv
       - tv-private
 
 #  TVPremieres:
 #    priority: 99
-#    preset: premieres
+#    template: premieres
 
   MoviesPublic:
     priority: 3
-    preset: 
+    template: 
       - global
       - movies
       - movies-public
@@ -149,7 +149,7 @@ tasks:
 
   MoviesPrivate:
     priority: 4
-    preset: 
+    template: 
       - global
       - movies
       - movies-private
@@ -157,7 +157,7 @@ tasks:
     seen: local
 
   MoviesKeep:
-    preset: 
+    template: 
       - no_global
       - movies-keep
       - clean-keep
@@ -165,10 +165,9 @@ tasks:
     interval: 1 days
     queue_movies: 
       quality: 720p
-      force: no
 
   MoviesWatch:
-    preset: 
+    template: 
       - no_global
       - movies-watch
       - clean-watch
@@ -176,4 +175,3 @@ tasks:
     interval: 1 days
     queue_movies: 
       quality: r5+
-      force: no
