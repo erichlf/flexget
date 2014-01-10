@@ -175,3 +175,11 @@ tasks:
     interval: 1 days
     queue_movies: 
       quality: r5+
+
+schedules:
+  - tasks: '*'
+    interval:
+      minutes: 15
+  - tasks: [MoviesKeep, MoviesWatch]
+    interval:
+      hours: 12
