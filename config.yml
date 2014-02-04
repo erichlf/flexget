@@ -26,16 +26,16 @@ templates:
   tv:
     include: [series.yml]
     exists_series: 
-      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Series/ 
-      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
-      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch/
+      - /data/opt/home/root/Videos/Series/ 
+      - /data/opt/home/root/Downlods/
+      - /data/opt/home/root/To.Watch/TV/
     thetvdb_lookup: yes
     if:
       - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
-      path: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch/TV
-      temp: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
+      path: /data/opt/home/root/To.Watch/TV/
+      temp: /data/opt/home/root/Downloads/
     series:
       settings:
         Best:
@@ -84,7 +84,8 @@ templates:
   movies:
     proper_movies: yes
     exists_movie: 
-      - /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/
+      - /data/opt/home/root/Videos/
+      - /data/opt/home/root/To.Watch/Movies/
     content_size:
       max: 3500
       strict: yes
@@ -92,8 +93,8 @@ templates:
       quality: dvdscr+ 
       target: 720p ac3+  
       label: Movies
-      path: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/To.Watch/Movies
-      temp: /mnt/usb_storage/USB_DISK0/MediaUSB/Videos/Torrents/
+      path: /data/opt/home/root/To.Watch/Movies/
+      temp: /data/opt/home/root/Downloads/
 
   movies-keep:
     include: [private/traktKeep.yml]
