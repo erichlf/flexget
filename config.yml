@@ -27,7 +27,7 @@ templates:
     include: [series.yml]
     exists_series: 
       - /data/opt/home/root/Videos/Series/ 
-      - /data/opt/home/root/Downlods/
+      - /data/opt/home/root/Downloads/
       - /data/opt/home/root/To.Watch/TV/
     thetvdb_lookup: yes
     if:
