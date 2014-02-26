@@ -8,9 +8,13 @@ series:
     - Game of Thrones:
         begin: S03E01
   Better:
+    - Boardwalk Empire:
+        begin: S04E04
     - Downton Abbey:
         begin: S04E01
         specials: no
+    - Homeland:
+        begin: S03E02
     - Masters of Sex
     - Modern Family:
         begin: S05E01
@@ -22,8 +26,6 @@ series:
         begin: S03E01
   Average:
     - Ben and Holly's Little Kingdom
-    - Boardwalk Empire:
-        begin: S04E04
     - Bob's Burgers
     - Charlie and Lola
     - Chopped
@@ -33,12 +35,11 @@ series:
     - Girls:
         begin: S03E01
     - The Graham Norton Show
-    - Homeland:
-        begin: S03E02
     - House of Cards (2013):
         begin: S02E01
     - House of Lies:
         begin: S03E02
+    - Jeopardy
     - Junior Doctors
     - Mickey Mouse Clubhouse
     - Mom
@@ -49,6 +50,7 @@ series:
     - Phineas and Ferb
     - Pocoyo
     - Shaun the Sheep
+    - The Taste UK
     - Three Day Nanny
     - The Walking Dead:
         begin: S04E11
