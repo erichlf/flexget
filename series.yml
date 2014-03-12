@@ -44,9 +44,7 @@ series:
     - Junior Doctors
     - Mickey Mouse Clubhouse
     - Mom
-    - One Born:
-        name_regexp:
-          - ^One.Born.+
+    - One Born Every Minute
     - Peppa Pig
     - Phineas and Ferb
     - Pocoyo
