@@ -26,16 +26,16 @@ templates:
   tv:
     include: [series.yml]
     exists_series: 
-      - /data/opt/home/root/Videos/Series/ 
-      - /data/opt/home/root/Downloads/
-      - /data/opt/home/root/To.Watch/TV/
+      - /volume1/Media/Videos/Series/ 
+      - /volume1/Media/Downloads/
+      - /volume1/Media/Videos/To.Watch/TV/
     thetvdb_lookup: yes
     if:
       - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
-      path: /data/opt/home/root/To.Watch/TV/
-      temp: /data/opt/home/root/Downloads/
+      path: /volume1/Media/Videos/To.Watch/TV/
+      temp: /volume1/Media/Downloads/
     series:
       settings:
         Best:
@@ -84,8 +84,8 @@ templates:
   movies:
     proper_movies: yes
     exists_movie: 
-      - /data/opt/home/root/Videos/
-      - /data/opt/home/root/To.Watch/Movies/
+      - /volume1/Media/Videos/
+      - /volume1/Media/Videos/To.Watch/Movies/
     content_size:
       max: 3500
       strict: yes
@@ -93,8 +93,8 @@ templates:
       quality: dvdscr+ 
       target: 720p ac3+  
       label: Movies
-      path: /data/opt/home/root/To.Watch/Movies/
-      temp: /data/opt/home/root/Downloads/
+      path: /volume1/Media/Videos/To.Watch/Movies/
+      temp: /volume1/Media/Downloads/
 
   movies-keep:
     include: [private/traktKeep.yml]
