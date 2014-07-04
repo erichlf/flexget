@@ -178,10 +178,10 @@ tasks:
       quality: r5+
 
 schedules:
-  - tasks: [TVPrivate, TVPublic]
+  - tasks: [TVPublic, TVPrivate]
     interval:
       minutes: 15
-  - tasks: [MoviesPrivate, MoviesPublic]
+  - tasks: [MoviesPublic, MoviesPrivate]
     interval:
       minutes: 60
   - tasks: [MoviesKeep, MoviesWatch]
