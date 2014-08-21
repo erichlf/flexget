@@ -27,10 +27,7 @@ series:
     - Sherlock:
         begin: S03E01
   Average:
-    - Ben and Holly's Little Kingdom
-    - Charlie and Lola
     - Chopped
-    - Disney Animated Shorts
     - Educating Yorkshire:
         begin: S01E07
     - Girls:
@@ -43,19 +40,15 @@ series:
     - The Island with Bear Grylls
     - Jeopardy
     - Junior Doctors
+    - Kitchen Nightmares
     - Married
-    - Mickey Mouse Clubhouse
     - Mom
     - One Born Every Minute
-    - Peppa Pig
-    - Phineas and Ferb
-    - Pocoyo
     - Shaun the Sheep
     - The Taste UK
     - Three Day Nanny
     - The Walking Dead:
         begin: S04E11
         specials: no
-    - Welcome to Sweden
     - A Young Doctors Notebook:
         begin: S02E02
