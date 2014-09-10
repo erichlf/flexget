@@ -36,6 +36,8 @@ series:
     - Chopped
     - Educating Yorkshire:
         begin: S01E07
+    - The Ellen DeGeneres Show:
+        identified_by: date
     - Girls:
         begin: S03E01
     - The Graham Norton Show
