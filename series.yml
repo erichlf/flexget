@@ -15,7 +15,7 @@ series:
         begin: S04E01
         specials: no
     - EPL:
-        name_regexp: 
+        name_regexp:
             - ^EPL 20\d\d \d\d \d\d Liverpool Vs \w+
             - ^EPL 20\d\d \d\d \d\d \w+ Vs Liverpool
     - Homeland:
@@ -32,7 +32,6 @@ series:
     - Sherlock:
         begin: S03E01
   Average:
-    - At Midnight
     - Chopped
     - Educating Yorkshire:
         begin: S01E07
@@ -48,6 +47,7 @@ series:
     - The Island with Bear Grylls
     - Jeopardy
     - Junior Doctors
+    - Last Week Tonight
     - Married
     - The Mindy Project
     - Mom
