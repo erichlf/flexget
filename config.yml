@@ -64,23 +64,6 @@ templates:
     set:
       ratio: 0.0
 
-  premieres:
-    include: [tvrss.yml]
-    series_premiere: yes
-    quality: <720p
-    regexp:
-      reject:
-        - game show
-        - news
-        - sports
-        - talk show
-      from: tvdb_genres
-    if:
-      - tvdb_ep_air_date < now - timedelta(days=1): reject
-    set:
-      label: premiere
-      ratio: 0.0
-
   movies:
     proper_movies: yes
     exists_movie:
@@ -134,10 +117,6 @@ tasks:
       - global
       - tv
       - tv-private
-
-#  TVPremieres:
-#    priority: 99
-#    template: premieres
 
   MoviesPublic:
     priority: 3
