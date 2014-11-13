@@ -14,10 +14,7 @@ series:
     - Downton Abbey:
         begin: S04E01
         specials: no
-    - EPL:
-        name_regexp:
-            - ^EPL 20\d\d \d\d \d\d Liverpool Vs \w+
-            - ^EPL 20\d\d \d\d \d\d \w+ Vs Liverpool
+    - The Goldbergs
     - Homeland:
         begin: S03E02
     - Masters of Sex
@@ -32,6 +29,7 @@ series:
     - Sherlock:
         begin: S03E01
   Average:
+    - Blackish
     - Chopped
     - Educating Yorkshire:
         begin: S01E07
