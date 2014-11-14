@@ -86,6 +86,8 @@ templates:
 
   movies-watch:
     include: [private/traktWatch.yml]
+    set:
+      label: watch
 
   movies-private:
     include: [private/moviesrss.yml]
