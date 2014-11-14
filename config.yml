@@ -101,12 +101,15 @@ templates:
 
   clean-transmission:
     include: [private/cleanTransmission.yml]
+    disable_builtins: [details]
 
   clean-watch:
     include: [private/cleanWatch.yml]
+    disable_builtins: [details]
 
   clean-keep:
     include: [private/cleanKeep.yml]
+    disable_builtins: [details]
 
 tasks:
   TVPublic:
