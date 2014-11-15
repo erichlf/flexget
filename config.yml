@@ -99,10 +99,6 @@ templates:
     set:
       ratio: 0.0
 
-  clean-transmission:
-    include: [private/cleanTransmission.yml]
-    disable_builtins: [details]
-
   clean-watch:
     include: [private/cleanWatch.yml]
     disable_builtins: [details]
@@ -148,6 +144,7 @@ tasks:
     template:
       - no_global
       - movies-keep
+      - clean-keep
     accept_all: yes
     interval: 1 days
     queue_movies:
@@ -157,17 +154,15 @@ tasks:
     template:
       - no_global
       - movies-watch
+      - clean-watch
     accept_all: yes
     interval: 1 days
     queue_movies:
       quality: r5+
 
   CleanUp:
-    template:
-      - no_global
-      - clean-transmission
-      - clean-watch
-      - clean-keep
+    include: [private/cleanTransmission.yml, private/cleanKeep.yml, private/cleanWatch.yml]
+    disable_builtins: [details]
 
 schedules:
   - tasks: [TVPublic, TVPrivate]
