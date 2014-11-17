@@ -1,6 +1,5 @@
 *.sqlite
 *.log*
-private
 .config-lock
 .fuse*
 TVError.txt
