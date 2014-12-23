@@ -1,62 +1,34 @@
 series:
   Best:
-    - The Big Bang Theory:
-        begin: S07E01
-    - Doctor Who (2005):
-        begin: S07E01
-        specials: no
-    - Game of Thrones:
-        begin: S03E01
+    - The Big Bang Theory
+    - Doctor Who (2005)
+    - Game of Thrones
   Better:
-    - Boardwalk Empire:
-        begin: S04E04
     - Cosmos A Space Time Odyssey
-    - Downton Abbey:
-        begin: S04E01
-        specials: no
+    - Downton Abbey
     - The Goldbergs
-    - Homeland:
-        begin: S03E02
+    - Homeland
     - Masters of Sex
-    - Modern Family:
-        begin: S05E01
-    - Mrs Brown's Boys:
-        begin: S03E04
+    - Modern Family
+    - Mrs Brown's Boys
     - Mr Selfridge
-    - Parenthood:
-        begin: S05E01
+    - Parenthood
     - Peaky Blinders
-    - Sherlock:
-        begin: S03E01
+    - Sherlock
   Average:
     - Blackish
-    - Chopped
-    - Educating Yorkshire:
-        begin: S01E07
-    - The Ellen DeGeneres Show:
-        identified_by: date
-    - Girls:
-        begin: S03E01
+    - Girls
     - The Graham Norton Show
-    - House of Cards (2013):
-        begin: S02E01
-    - House of Lies:
-        begin: S03E02
+    - House of Cards (2013)
+    - House of Lies
     - The Island with Bear Grylls
-    - Jeopardy
-    - Junior Doctors
-    - Last Week Tonight
+    - Last Week Tonight:
+        identified_by: date
     - Married
-    - The Missing
     - The Mindy Project
     - Mom
     - One Born Every Minute
     - Shaun the Sheep
-    - The Taste UK
-    - Three Day Nanny
-    - The Walking Dead:
-        begin: S04E11
-        specials: no
+    - The Walking Dead
     - Welcome to Sweden
-    - A Young Doctors Notebook:
-        begin: S02E02
+    - A Young Doctors Notebook
