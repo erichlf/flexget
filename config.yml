@@ -36,6 +36,7 @@ templates:
       label: tv
       path: /volume1/Media/Videos/To.Watch/TV/
       temp: /volume1/Media/Downloads/
+      specials: no
     series:
       settings:
         Best:
