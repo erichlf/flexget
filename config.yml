@@ -102,11 +102,9 @@ templates:
 
   clean-watch:
     include: [private/cleanWatch.yml]
-    disable_builtins: [details]
 
   clean-keep:
     include: [private/cleanKeep.yml]
-    disable_builtins: [details]
 
 tasks:
   TVPublic:
@@ -129,7 +127,6 @@ tasks:
       - global
       - movies
       - movies-public
-    movie_queue: yes
     seen: local
 
   MoviesPrivate:
@@ -138,7 +135,6 @@ tasks:
       - global
       - movies
       - movies-private
-    movie_queue: yes
     seen: local
 
   MoviesKeep:
@@ -148,7 +144,8 @@ tasks:
       - clean-keep
     accept_all: yes
     interval: 1 days
-    queue_movies:
+    movie_queue:
+      action: add
       quality: 720p
 
   MoviesWatch:
@@ -158,12 +155,12 @@ tasks:
       - clean-watch
     accept_all: yes
     interval: 1 days
-    queue_movies:
+    movie_queue:
+      action: add
       quality: r5+
 
   CleanUp:
     include: [private/cleanTransmission.yml, private/cleanKeep.yml, private/cleanWatch.yml]
-    disable_builtins: [details]
 
 schedules:
   - tasks: [TVPublic, TVPrivate]
