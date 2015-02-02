@@ -11,13 +11,16 @@ series:
     - Masters of Sex
     - Modern Family
     - Mrs Brown's Boys
-    - Mr Selfridge
-    - Parenthood
     - Peaky Blinders
     - Sherlock
   Average:
     - Blackish
     - Broadchurch
+    - EPL:
+        identified_by: date
+        name_regexp:
+          - ^EPL.\d\d\d\d.\d\d.\d\d.+Liverpool
+          - ^EPL.\d\d\d\d.\d\d.\d\d.+Manchester.City
     - Girls
     - The Graham Norton Show
     - House of Cards (2013)
@@ -30,6 +33,8 @@ series:
     - Mom
     - One Born Every Minute
     - Shaun the Sheep
+    - UEFA:
+        identified_by: date
     - The Walking Dead
     - Welcome to Sweden
     - A Young Doctors Notebook
