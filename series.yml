@@ -21,6 +21,7 @@ series:
         name_regexp:
           - ^EPL.\d\d\d\d.\d\d.\d\d.+Liverpool
           - ^EPL.\d\d\d\d.\d\d.\d\d.+Manchester.City
+    - First Dates
     - Girls
     - The Graham Norton Show
     - Homes Under the Hammer
