@@ -50,7 +50,7 @@ templates:
           timeframe: 30 minutes
           propers: no
         Avereage:
-          target: <720p
+          target: <480p
           quality: preair+
           timeframe: 30 minutes
           propers: no
@@ -163,7 +163,7 @@ tasks:
     include: [private/cleanTransmission.yml, private/cleanKeep.yml, private/cleanWatch.yml]
 
 schedules:
-  - tasks: [TVPublic, TVPrivate]
+  - tasks: [TVPrivate, TVPublic]
     interval:
       minutes: 15
   - tasks: [MoviesPublic, MoviesPrivate]
