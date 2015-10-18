@@ -8,9 +8,6 @@ templates:
       require:
         - '*.avi'
         - '*.mkv'
-        - '*.m4v'
-        - '*.mpg'
-        - '*.mp4'
         - '*.r0*'
         - '*.rar'
       reject:
@@ -41,17 +38,17 @@ templates:
       settings:
         Best:
           target: 720p hdtv+
-          quality: <=1080p hdtv+
+          quality: <=720p
           timeframe: 30 minutes
           propers: no
         Better:
-          target: <720p dvdscr+
-          quality: <=720p webrip+
+          target: <=720p webrip+
+          quality: <=720p
           timeframe: 30 minutes
           propers: no
         Avereage:
-          target: <480p
-          quality: preair+
+          target: <=720p preair+
+          quality: <=720p
           timeframe: 30 minutes
           propers: no
 
