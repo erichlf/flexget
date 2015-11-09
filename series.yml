@@ -38,9 +38,6 @@ series:
     - The Mindy Project
     - Mom
     - Rick and Morty
-    - UEFA:
-        identified_by: date
-        name_regexp:
-          - (?![mM]agazine)
+    - Survivorman
     - The Walking Dead
     - Welcome to Sweden
