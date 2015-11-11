@@ -15,13 +15,9 @@ series:
     - Sherlock
     - Vikings
   Average:
-    - Marvel's Agent of S.H.I.E.L.D.
+    - "Marvel's Agents of S.H.I.E.L.D.":
+        name_regexp: ^marvel(')?s.agents.of.(s.h.i.e.l.d.?|shield)
     - Broadchurch
-    - EPL:
-        identified_by: date
-        name_regexp:
-          - ^EPL.\d\d\d\d.\d\d.\d\d.+Liverpool
-          - ^EPL.\d\d\d\d.\d\d.\d\d.+Manchester.City
     - First Dates
     - Girls
     - The Graham Norton Show
