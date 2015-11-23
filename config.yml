@@ -34,23 +34,21 @@ templates:
       path: /volume1/Media/Videos/To.Watch/TV/
       temp: /volume1/Media/Downloads/
       specials: no
+      propers: yes
     series:
       settings:
         Best:
           target: 720p hdtv+
           quality: <=720p
           timeframe: 30 minutes
-          propers: no
         Better:
           target: <=720p webrip+
           quality: <=720p
           timeframe: 30 minutes
-          propers: no
         Avereage:
           target: <=720p preair+
           quality: <=720p
           timeframe: 30 minutes
-          propers: no
 
   tv-private:
     include: [private/tvrss.yml]
