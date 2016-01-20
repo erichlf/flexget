@@ -27,8 +27,8 @@ templates:
       - /volume1/Media/Downloads/
       - /volume1/Media/Videos/To.Watch/TV/
     thetvdb_lookup: yes
-#    if:
-#      - tvdb_ep_air_date < now - timedelta(days=2): reject
+    if:
+      - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
       path: /volume1/Media/Videos/To.Watch/TV/
