@@ -18,6 +18,7 @@ series:
   Average:
     - "Marvel's Agents of S.H.I.E.L.D.":
         name_regexp: ^marvel(')?s.agents.of.(s.h.i.e.l.d.?|shield)
+    - Bing
     - Broadchurch
     - First Dates
     - Girls
@@ -28,13 +29,12 @@ series:
     - House of Cards (2013)
     - The Island
     - The Island with Bear Grylls
-    - Jeopardy:
-        identified_by: date
     - Last Week Tonight With John Oliver
     - Married
     - The Mindy Project
     - Mom
     - Rick and Morty
+    - Sofia the First
     - Survivorman
     - The Walking Dead
     - Welcome to Sweden
