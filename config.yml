@@ -1,7 +1,6 @@
 templates:
   global:
-    rtorrent:
-      uri: /media/sdal/lvleph/private/rtorrent/.socket
+    include: [private/transmission.yml]
     regexp:
       reject:
         - \btrailer\b: {from: title}
@@ -28,7 +27,7 @@ templates:
       - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
-      path: /media/sdal/lvleph/Videos/To.Watch/TV/
+      path: /media/sdal/lvleph/To.Watch/TV/
       temp: /media/sdal/lvleph/Downloads/
       specials: no
       propers: yes
@@ -60,8 +59,8 @@ templates:
   movies:
     proper_movies: yes
     exists_movie:
-      - /media/sdal/lvleph/Videos/
-      - /media/sdal/lvleph/Videos/To.Watch/Movies/
+      - /media/sdal/lvleph/
+      - /media/sdal/lvleph/To.Watch/Movies/
     content_size:
       max: 3500
       strict: yes
@@ -69,7 +68,7 @@ templates:
       quality: dvdscr+
       target: 720p ac3+
       label: Movies
-      path: /media/sdal/lvleph/Videos/To.Watch/Movies/
+      path: /media/sdal/lvleph/To.Watch/Movies/
       temp: /media/sdal/lvleph/Downloads/
 
   movies-keep:
