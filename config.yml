@@ -27,8 +27,8 @@ templates:
       - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
-      path: /media/sdal/lvleph/To.Watch/TV/
-      temp: /media/sdal/lvleph/Downloads/
+      path: /volume1/Media/Videos/To.Watch/TV/
+      temp: /volume1/Media/Downloads/
       specials: no
       propers: yes
     series:
@@ -59,8 +59,8 @@ templates:
   movies:
     proper_movies: yes
     exists_movie:
-      - /media/sdal/lvleph/
-      - /media/sdal/lvleph/To.Watch/Movies/
+      - /volume1/Media/Videos
+      - /volume1/Media/Videos/To.Watch/Movies/
     content_size:
       max: 3500
       strict: yes
@@ -68,8 +68,8 @@ templates:
       quality: dvdscr+
       target: 720p ac3+
       label: Movies
-      path: /media/sdal/lvleph/To.Watch/Movies/
-      temp: /media/sdal/lvleph/Downloads/
+      path: /volume1/Media/Videos/To.Watch/Movies/
+      temp: /volume1/Media/Downloads/
 
   movies-keep:
     include: [private/traktKeep.yml]
