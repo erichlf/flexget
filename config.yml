@@ -41,7 +41,7 @@ templates:
           target: <=720p webrip+
           quality: <=720p
           timeframe: 30 minutes
-        Avereage:
+        Average:
           target: <=720p preair+
           quality: <=720p
           timeframe: 30 minutes
