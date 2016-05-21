@@ -28,7 +28,7 @@ templates:
     set:
       label: tv
       path: ~/To.Watch/TV/
-      temp: Downloads/
+      temp: ~/Downloads/
       specials: no
       propers: yes
     series:
@@ -69,7 +69,7 @@ templates:
       target: 720p ac3+
       label: Movies
       path: ~/To.Watch/Movies/
-      temp: Downloads/
+      temp: ~/Downloads/
 
   movies-keep:
     include: [private/traktKeep.yml]
