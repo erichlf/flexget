@@ -27,7 +27,7 @@ templates:
       - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
-      path: To.Watch/TV/
+      path: ~/To.Watch/TV/
       temp: Downloads/
       specials: no
       propers: yes
@@ -68,7 +68,7 @@ templates:
       quality: dvdscr+
       target: 720p ac3+
       label: Movies
-      path: To.Watch/Movies/
+      path: ~/To.Watch/Movies/
       temp: Downloads/
 
   movies-keep:
