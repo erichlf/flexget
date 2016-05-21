@@ -27,8 +27,8 @@ templates:
       - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
-      path: /volume1/Media/Videos/To.Watch/TV/
-      temp: /volume1/Media/Downloads/
+      path: To.Watch/TV/
+      temp: Downloads/
       specials: no
       propers: yes
     series:
@@ -68,8 +68,8 @@ templates:
       quality: dvdscr+
       target: 720p ac3+
       label: Movies
-      path: /volume1/Media/Videos/To.Watch/Movies/
-      temp: /volume1/Media/Downloads/
+      path: To.Watch/Movies/
+      temp: Downloads/
 
   movies-keep:
     include: [private/traktKeep.yml]
