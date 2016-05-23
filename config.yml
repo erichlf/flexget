@@ -115,7 +115,6 @@ tasks:
       - movies
       - movies-public
       - movies-keep
-      - remove-keep
     seen: local
     list_queue:
       - movie_list: KEEPERS
@@ -129,7 +128,6 @@ tasks:
       - movies
       - movies-private
       - movies-watch
-      - remove-watch
     seen: local
     list_queue:
       - movie_list: WATCH
@@ -142,7 +140,6 @@ tasks:
       - movies
       - movies-private
       - movies-keep
-      - remove-keep
     list_queue:
       - movie_list: KEEPERS
     list_remove:
@@ -154,13 +151,14 @@ tasks:
       - movies
       - movies-private
       - movies-watch
-      - remove-watch
     list_queue:
       - movie_list: WATCH
     list_remove:
       - movie_list: WATCH
 
   MovieWatchQueue:
+    template:
+      - no_global
     trakt_list:
       username: lvleph
       account: lvleph
@@ -169,11 +167,10 @@ tasks:
     list_add:
       - movie_list: KEEPERS
     accept_all: yes
-    template:
-      - no_global
-      - remove-keep
 
   MovieKeepQueue:
+    template:
+      - no_global
     trakt_list:
       username: lvleph
       account: lvleph
@@ -182,9 +179,6 @@ tasks:
     list_add:
       - movie_list: WATCH
     accept_all: yes
-    template:
-      - no_global
-      - remove-watch
 
   RemoveTrakt:
     template:
