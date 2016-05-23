@@ -8,6 +8,7 @@ templates:
       require:
         - '*.avi'
         - '*.mkv'
+        - '*.mp4'
         - '*.r0*'
         - '*.rar'
       reject:
@@ -15,7 +16,7 @@ templates:
         - '*.wmv'
         - '*CD1*'
     # The Pirate Bay ssl certs always fail
-    verify_ssl_certificates: no
+    verify_ssl_certificates: yes
     # Size and seed restrictions require real torrents
     magnets: no
     download: yes
@@ -28,8 +29,8 @@ templates:
       - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
-      path: ~/To.Watch/TV/
-      temp: ~/Downloads/
+      path: /media/sdal/lvleph/To.Watch/TV/
+      temp: /media/sdal/lvleph/Downloads/
       specials: no
       propers: yes
     series:
@@ -50,12 +51,12 @@ templates:
   tv-private:
     include: [private/tvrss.yml]
     set:
-      ratio: 2.0
+      ratio: 3.0
 
   tv-public:
     include: [tvrss.yml]
     set:
-      ratio: 0.0
+      ratio: 1.0
 
   movies:
     proper_movies: yes
@@ -63,40 +64,34 @@ templates:
       - /volume1/Media/Videos
       - /volume1/Media/Videos/To.Watch/Movies/
     content_size:
-      max: 3500
+      max: 4500
       strict: yes
     set:
       quality: dvdscr+
       target: 720p ac3+
       label: Movies
-      path: ~/To.Watch/Movies/
-      temp: ~/Downloads/
-
-  movies-keep:
-    include: [private/traktKeep.yml]
-    set:
-      label: keep
-
-  movies-watch:
-    include: [private/traktWatch.yml]
-    set:
-      label: watch
+      path: /media/sdal/lvleph/To.Watch/Movies/
+      temp: /media/sdal/lvleph/Downloads/
 
   movies-private:
     include: [private/moviesrss.yml]
     set:
-      ratio: 2.0
+      ratio: 3.0
 
   movies-public:
     include: [moviesrss.yml]
     set:
-      ratio: 0.0
+      ratio: 1.0
 
-  clean-watch:
-    include: [private/cleanWatch.yml]
+  movies-keep:
+    set:
+      label: keep
+      quality: 720p+
 
-  clean-keep:
-    include: [private/cleanKeep.yml]
+  movies-watch:
+    set:
+      label: watch
+      quality: r5+
 
 tasks:
   TVPublic:
@@ -113,54 +108,120 @@ tasks:
       - tv
       - tv-private
 
-  MoviesPublic:
+  MoviesKeepPublic:
     priority: 3
     template:
       - global
       - movies
       - movies-public
+      - movies-keep
+      - remove-keep
     seen: local
+    list_queue:
+      - movie_list: KEEPERS
+    list_remove:
+      - movie_list: KEEPERS
 
-  MoviesPrivate:
+  MoviesWatchPublic:
     priority: 4
     template:
       - global
       - movies
       - movies-private
-    seen: local
-
-  MoviesKeep:
-    template:
-      - no_global
-      - movies-keep
-      - clean-keep
-    accept_all: yes
-    interval: 1 days
-    movie_queue:
-      action: add
-      quality: 720p
-
-  MoviesWatch:
-    template:
-      - no_global
       - movies-watch
-      - clean-watch
-    accept_all: yes
-    interval: 1 days
-    movie_queue:
-      action: add
-      quality: r5+
+      - remove-watch
+    seen: local
+    list_queue:
+      - movie_list: WATCH
+    list_remove:
+      - movie_list: WATCH
 
-  CleanUp:
-    include: [private/cleanTransmission.yml, private/cleanKeep.yml, private/cleanWatch.yml]
+  MoviesKeepPrivate:
+    template:
+      - global
+      - movies
+      - movies-private
+      - movies-keep
+      - remove-keep
+    list_queue:
+      - movie_list: KEEPERS
+    list_remove:
+      - movie_list: KEEPERS
+
+  MoviesWatchPrivate:
+    template:
+      - global
+      - movies
+      - movies-private
+      - movies-watch
+      - remove-watch
+    list_queue:
+      - movie_list: WATCH
+    list_remove:
+      - movie_list: WATCH
+
+  MovieWatchQueue:
+    trakt_list:
+      username: lvleph
+      account: lvleph
+      list: Keepers
+      type: movies
+    list_add:
+      - movie_list: KEEPERS
+    accept_all: yes
+    template:
+      - no_global
+      - remove-keep
+
+  MovieKeepQueue:
+    trakt_list:
+      username: lvleph
+      account: lvleph
+      list: watchlist
+      type: movies
+    list_add:
+      - movie_list: WATCH
+    accept_all: yes
+    template:
+      - no_global
+      - remove-watch
+
+  RemoveTrakt:
+    template:
+      - no_global
+    filesystem: 
+      path:
+        - /volume1/Media/Videos/Movies
+        - /volume1/Media/Videos/To.Watch/Movies
+      recursive: yes
+      retrieve: files
+      regexp: '^.*[^sample].*\.(avi|mp4,mkv,m4v)$'
+    imdb_lookup: yes
+    accept_all: yes
+    list_remove:
+      - trakt_list:
+          username: lvleph
+          account: lvleph
+          list: Keepers
+          type: movies
+      - trakt_list:
+          username: lvleph
+          account: lvleph
+          list: watchlist
+          type: movies
+      - movie_list: WATCH
+      - movie_list: KEEPERS
 
 schedules:
   - tasks: [TVPrivate, TVPublic]
     interval:
       minutes: 15
-  - tasks: [MoviesPublic, MoviesPrivate]
+  - tasks: [MoviesWatchPrivate, MoviesKeepPrivate, MoviesWatchPublic, MoviesKeepPublic]
     interval:
       minutes: 60
-  - tasks: [MoviesKeep, MoviesWatch, CleanUp]
+  - tasks: [MoviesKeepQueue, MoviesWatchQueue]
     interval:
       hours: 24
+  - tasks: RemoveTrakt
+    interval:
+      weeks: 4
