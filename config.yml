@@ -24,9 +24,8 @@ templates:
     include: [series.yml]
     thetvdb_lookup: yes
     if:
-      - tvdb_ep_air_date:
-        if:
-          - tvdb_ep_air_date < now - timedelta(days=2): reject
+      - "tvdb_ep_air_date is None": reject
+      - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
       path: ~/To.Watch/TV/
