@@ -157,7 +157,7 @@ tasks:
     list_remove:
       - movie_list: WATCH
 
-  MovieWatchQueue:
+  MoviesWatchQueue:
     template:
       - no_global
     trakt_list:
@@ -169,7 +169,7 @@ tasks:
       - movie_list: KEEPERS
     accept_all: yes
 
-  MovieKeepQueue:
+  MoviesKeepQueue:
     template:
       - no_global
     trakt_list:
