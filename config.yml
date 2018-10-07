@@ -16,7 +16,7 @@ templates:
         - '*.wmv'
         - '*CD1*'
     # The Pirate Bay ssl certs always fail
-    verify_ssl_certificates: yes
+    # verify_ssl_certificates: yes
     # Size and seed restrictions require real torrents
     magnets: no
     download: yes
@@ -24,6 +24,7 @@ templates:
   tv:
     include: [series.yml]
     thetvdb_lookup: yes
+    include: [private/tvrss.yml]
     if:
       - "tvdb_ep_air_date is not None":
           if:
@@ -34,6 +35,7 @@ templates:
       temp: /media/sdal/lvleph/Downloads/
       specials: no
       propers: yes
+      ratio: 3.0
     series:
       settings:
         Best:
@@ -49,18 +51,9 @@ templates:
           quality: <=720p
           timeframe: 30 minutes
 
-  tv-private:
-    include: [private/tvrss.yml]
-    set:
-      ratio: 3.0
-
-  tv-public:
-    include: [tvrss.yml]
-    set:
-      ratio: 1.0
-
   movies:
     proper_movies: yes
+    include: [private/moviesrss.yml]
     exists_movie:
       - /volume1/Media/Videos
       - /volume1/Media/Videos/To.Watch/Movies/
@@ -73,16 +66,7 @@ templates:
       label: Movies
       path: /media/sdal/lvleph/To.Watch/Movies/
       temp: /media/sdal/lvleph/Downloads/
-
-  movies-private:
-    include: [private/moviesrss.yml]
-    set:
       ratio: 3.0
-
-  movies-public:
-    include: [moviesrss.yml]
-    set:
-      ratio: 1.0
 
   movies-keep:
     set:
@@ -95,67 +79,30 @@ templates:
       quality: r5+
 
 tasks:
-  TVPublic:
-    priority: 1
+  TV:
     template:
       - global
       - tv
-      - tv-public
 
-  TVPrivate:
-    priority: 2
-    template:
-      - global
-      - tv
-      - tv-private
-
-  MoviesKeepPublic:
-    priority: 3
+  MoviesKeep:
     template:
       - global
       - movies
-      - movies-public
       - movies-keep
-    seen: local
-    list_queue:
-      - movie_list: KEEPERS
-    list_remove:
-      - movie_list: KEEPERS
+    list_match:
+      from:
+        - movie_list: KEEPERS
+      remove_on_match: yes
 
-  MoviesWatchPublic:
-    priority: 4
+  MoviesWatch:
     template:
       - global
       - movies
-      - movies-private
       - movies-watch
-    seen: local
-    list_queue:
-      - movie_list: WATCH
-    list_remove:
-      - movie_list: WATCH
-
-  MoviesKeepPrivate:
-    template:
-      - global
-      - movies
-      - movies-private
-      - movies-keep
-    list_queue:
-      - movie_list: KEEPERS
-    list_remove:
-      - movie_list: KEEPERS
-
-  MoviesWatchPrivate:
-    template:
-      - global
-      - movies
-      - movies-private
-      - movies-watch
-    list_queue:
-      - movie_list: WATCH
-    list_remove:
-      - movie_list: WATCH
+    list_match:
+      from:
+        - movie_list: WATCH
+      remove_on_match: yes
 
   MoviesWatchQueue:
     template:
@@ -208,10 +155,10 @@ tasks:
       - movie_list: KEEPERS
 
 schedules:
-  - tasks: [TVPrivate, TVPublic]
+  - tasks: [TV]
     interval:
       minutes: 15
-  - tasks: [MoviesWatchPrivate, MoviesKeepPrivate, MoviesWatchPublic, MoviesKeepPublic]
+  - tasks: [MoviesWatch, MoviesKeep]
     interval:
       minutes: 60
   - tasks: [MoviesKeepQueue, MoviesWatchQueue]
