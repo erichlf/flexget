@@ -22,9 +22,8 @@ templates:
     download: yes
 
   tv:
-    include: [series.yml]
+    include: [series.yml, private/tvrss.yml]
     thetvdb_lookup: yes
-    include: [private/tvrss.yml]
     if:
       - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
