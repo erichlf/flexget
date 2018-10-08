@@ -26,9 +26,7 @@ templates:
     thetvdb_lookup: yes
     include: [private/tvrss.yml]
     if:
-      - "tvdb_ep_air_date is not None":
-          if:
-            - tvdb_ep_air_date < now - timedelta(days=2): reject
+      - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
       path: /media/sdal/lvleph/To.Watch/TV/
