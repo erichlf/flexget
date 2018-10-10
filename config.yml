@@ -1,3 +1,9 @@
+variables: private/variables.yml
+
+web_server:
+  run_v2: true
+  port: '{? port ?}'
+
 templates:
   global:
     include: [private/transmission.yml]
@@ -36,8 +42,8 @@ templates:
     series:
       settings:
         Best:
-          target: 720p hdtv+
-          quality: <=720p
+          target: 1080p hdtv+
+          quality: <=1080p
           timeframe: 30 minutes
         Better:
           target: <=720p webrip+
@@ -55,7 +61,7 @@ templates:
       - /volume1/Media/Videos
       - /volume1/Media/Videos/To.Watch/Movies/
     content_size:
-      max: 4500
+      max: 5000
       strict: yes
     set:
       quality: dvdscr+
@@ -72,7 +78,7 @@ templates:
   movies-keep:
     set:
       label: keep
-      quality: 720p+
+      quality: 1080p
 
   movies-watch:
     set:
