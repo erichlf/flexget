@@ -30,8 +30,8 @@ templates:
             - tvdb_ep_air_date < now - timedelta(days=2): reject
     set:
       label: tv
-      path: /media/sdal/lvleph/To.Watch/TV/
-      temp: /media/sdal/lvleph/Downloads/
+      path: /volume1/Media/Videos/To.Watch/TV/
+      temp: /volume1/Media/Videos/Downloads/
       specials: no
       propers: yes
       ratio: 3.0
@@ -63,8 +63,12 @@ templates:
       quality: dvdscr+
       target: 720p ac3+
       label: Movies
-      path: /media/sdal/lvleph/To.Watch/Movies/
-      temp: /media/sdal/lvleph/Downloads/
+      path: /volume1/Media/Videos/To.Watch/Movies/
+      temp: /volume1/Media/Downloads/
+
+  movies-private:
+    include: [private/moviesrss.yml]
+    set:
       ratio: 3.0
 
   movies-keep:
