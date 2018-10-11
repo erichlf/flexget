@@ -34,7 +34,7 @@ templates:
       - tvdb_ep_air_date and tvdb_ep_air_date <= now - timedelta(days=2): accept
     set:
       label: tv
-      path: /volume1/Media/Videos/To.Watch/TV/{{series_name}}/
+      path: /volume1/Media/Videos/To.Watch/TV/{{series_name.replace(' ', '.')}}/
       specials: no
       propers: yes
       ratio: 3.0
