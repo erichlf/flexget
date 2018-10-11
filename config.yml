@@ -5,7 +5,7 @@ web_server:
   port: '{? port ?}'
 
 templates:
-  global:
+  main:
     include: [private/transmission.yml]
     regexp:
       reject:
@@ -28,37 +28,61 @@ templates:
     download: yes
 
   tv:
-    include: [series.yml, private/tvrss.yml]
+    include: [private/tvrss.yml]
     thetvdb_lookup: yes
     if:
       - tvdb_ep_air_date and tvdb_ep_air_date <= now - timedelta(days=2): accept
     set:
       label: tv
-      path: /volume1/Media/Videos/To.Watch/TV/
-      temp: /volume1/Media/Videos/Downloads/
+      path: /volume1/Media/Videos/To.Watch/TV/{{series_name}}/
       specials: no
       propers: yes
       ratio: 3.0
-    series:
+
+  tvBest:
+    configure_series:
       settings:
-        Best:
-          target: 1080p hdtv+
-          quality: <=1080p
-          timeframe: 30 minutes
-        Better:
-          target: <=720p webrip+
-          quality: <=720p
-          timeframe: 30 minutes
-        Average:
-          target: <=720p preair+
-          quality: <=720p
-          timeframe: 30 minutes
+        target: 1080p hdtv+
+        quality: <=1080p
+        timeframe: 30 minutes
+      from:
+        trakt_list:
+          username: lvleph
+          account: lvleph
+          list: TV Best
+          type: shows
+
+  tvBetter:
+    configure_series:
+      settings:
+        target: <=720p webrip+
+        quality: <=720p
+        timeframe: 30 minutes
+      from:
+        trakt_list:
+          username: lvleph
+          account: lvleph
+          list: TV Better
+          type: shows
+
+  tvAVG:
+    configure_series:
+      settings:
+        target: <=720p preair+
+        quality: <=720p
+        timeframe: 30 minutes
+      from:
+        trakt_list:
+          username: lvleph
+          account: lvleph
+          list: TV Average
+          type: shows
 
   movies:
     proper_movies: yes
     include: [private/moviesrss.yml]
     exists_movie:
-      - /volume1/Media/Videos
+      - /volume1/Media/Videos/
       - /volume1/Media/Videos/To.Watch/Movies/
     content_size:
       max: 5000
@@ -86,14 +110,27 @@ templates:
       quality: r5+
 
 tasks:
-  TV:
+  TVBest:
     template:
-      - global
+      - main
       - tv
+      - tvBest
+
+  TVBetter:
+    template:
+      - main
+      - tv
+      - tvBetter
+
+  TVAVG:
+    template:
+      - main
+      - tv
+      - tvAVG
 
   MoviesKeep:
     template:
-      - global
+      - main
       - movies
       - movies-keep
     list_match:
@@ -103,7 +140,7 @@ tasks:
 
   MoviesWatch:
     template:
-      - global
+      - main
       - movies
       - movies-watch
     list_match:
@@ -112,8 +149,6 @@ tasks:
       remove_on_match: yes
 
   MoviesWatchQueue:
-    template:
-      - no_global
     trakt_list:
       username: lvleph
       account: lvleph
@@ -124,8 +159,6 @@ tasks:
     accept_all: yes
 
   MoviesKeepQueue:
-    template:
-      - no_global
     trakt_list:
       username: lvleph
       account: lvleph
@@ -136,8 +169,6 @@ tasks:
     accept_all: yes
 
   RemoveTrakt:
-    template:
-      - no_global
     filesystem: 
       path:
         - /volume1/Media/Videos/Movies
@@ -162,7 +193,7 @@ tasks:
       - movie_list: KEEPERS
 
 schedules:
-  - tasks: [TV]
+  - tasks: [TVBest, TVBetter, TVAVG]
     interval:
       minutes: 15
   - tasks: [MoviesWatch, MoviesKeep]
