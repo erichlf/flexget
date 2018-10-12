@@ -1,3 +1,0 @@
-inputs:
-  - rss: { url: 'http://torrentz.eu/feed_verified?q=movie', silent: yes, group_links: yes }
-

@@ -21,23 +21,26 @@ templates:
         - 'password.txt'
         - '*.wmv'
         - '*CD1*'
-    # The Pirate Bay ssl certs always fail
-    # verify_ssl_certificates: yes
-    # Size and seed restrictions require real torrents
-    magnets: no
-    download: yes
 
   tv:
-    include: [private/tvrss.yml]
-    thetvdb_lookup: yes
+    trakt_lookup: yes
     if:
-      - tvdb_ep_air_date and tvdb_ep_air_date <= now - timedelta(days=2): accept
+      - trakt_ep_first_aired and trakt_ep_first_aired <= now - timedelta(days=2): accept
     set:
       label: tv
-      path: /volume1/Media/Videos/To.Watch/TV/{{series_name.replace(' ', '.')}}/
+      path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
+      filename: '{{trakt_ep_id}}.{{trakt_ep_name}}'
       specials: no
       propers: yes
       ratio: 3.0
+    include: [private/tvrss.yml]
+    html:
+      url: https://piratebaymirror.eu/browse/208/{{i}}/3/0
+      links_re: [magnet]
+      title_from: url
+      increment:
+        from: 0
+        to: 3
 
   tvBest:
     configure_series:
@@ -80,7 +83,6 @@ templates:
 
   movies:
     proper_movies: yes
-    include: [private/moviesrss.yml]
     exists_movie:
       - /volume1/Media/Videos/
       - /volume1/Media/Videos/To.Watch/Movies/
@@ -93,9 +95,16 @@ templates:
       label: Movies
       path: /volume1/Media/Videos/To.Watch/Movies/
       temp: /volume1/Media/Downloads/
+    include: [private/moviesrss.yml]
+    html:
+      url: https://piratebaymirror.eu/browse/207/{{i}}/3/0
+      links_re: [magnet]
+      title_from: url
+      increment:
+        from: 0
+        to: 3
 
   movies-private:
-    include: [private/moviesrss.yml]
     set:
       ratio: 3.0
 
@@ -103,11 +112,19 @@ templates:
     set:
       label: keep
       quality: 1080p
+    list_match:
+      from:
+        - movie_list: KEEPERS
+      remove_on_match: yes
 
   movies-watch:
     set:
       label: watch
       quality: r5+
+    list_match:
+      from:
+        - movie_list: WATCH
+      remove_on_match: yes
 
 tasks:
   TVBest:
@@ -133,20 +150,12 @@ tasks:
       - main
       - movies
       - movies-keep
-    list_match:
-      from:
-        - movie_list: KEEPERS
-      remove_on_match: yes
 
   MoviesWatch:
     template:
       - main
       - movies
       - movies-watch
-    list_match:
-      from:
-        - movie_list: WATCH
-      remove_on_match: yes
 
   MoviesWatchQueue:
     trakt_list:
@@ -169,14 +178,14 @@ tasks:
     accept_all: yes
 
   RemoveTrakt:
-    filesystem: 
+    filesystem:
       path:
         - /volume1/Media/Videos/Movies
         - /volume1/Media/Videos/To.Watch/Movies
       recursive: yes
       retrieve: files
       regexp: '^.*[^sample].*\.(avi|mp4,mkv,m4v)$'
-    imdb_lookup: yes
+    trakt_lookup: yes
     accept_all: yes
     list_remove:
       - trakt_list:
