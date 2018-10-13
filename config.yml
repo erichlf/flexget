@@ -37,7 +37,7 @@ templates:
       propers: yes
       ratio: 3.0
     content_size:
-      max: 1500
+      max: 2600
       strict: yes
     include: [private/tvrss.yml]
     html:
