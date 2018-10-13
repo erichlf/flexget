@@ -21,6 +21,9 @@ templates:
         - 'password.txt'
         - '*.wmv'
         - '*CD1*'
+    set:
+      main_file_only: yes
+      include_subs: yes
 
   tv:
     trakt_lookup: yes
@@ -84,7 +87,7 @@ templates:
   movies:
     proper_movies: yes
     exists_movie:
-      - /volume1/Media/Videos/
+      - /volume1/Media/Videos/Movies/
       - /volume1/Media/Videos/To.Watch/Movies/
     content_size:
       max: 5000
@@ -94,7 +97,7 @@ templates:
       target: 720p ac3+
       label: Movies
       path: /volume1/Media/Videos/To.Watch/Movies/
-      temp: /volume1/Media/Downloads/
+      ratio: 2.0
     include: [private/moviesrss.yml]
     html:
       url: https://piratebaymirror.eu/browse/207/{{i}}/3/0
@@ -104,11 +107,7 @@ templates:
         from: 0
         to: 3
 
-  movies-private:
-    set:
-      ratio: 3.0
-
-  movies-keep:
+  moviesKeep:
     set:
       label: keep
       quality: 1080p
@@ -117,7 +116,7 @@ templates:
         - movie_list: KEEPERS
       remove_on_match: yes
 
-  movies-watch:
+  moviesWatch:
     set:
       label: watch
       quality: r5+
@@ -125,6 +124,14 @@ templates:
       from:
         - movie_list: WATCH
       remove_on_match: yes
+
+  moviesQueue:
+    trakt_list:
+      username: lvleph
+      account: lvleph
+      list: watchlist
+      type: movies
+    accept_all: yes
 
 tasks:
   TVBest:
@@ -149,33 +156,30 @@ tasks:
     template:
       - main
       - movies
-      - movies-keep
+      - moviesKeep
 
   MoviesWatch:
     template:
       - main
       - movies
-      - movies-watch
+      - moviesWatch
 
   MoviesWatchQueue:
-    trakt_list:
-      username: lvleph
-      account: lvleph
+    template:
+      - moviesQueue
+    set:
       list: Keepers
-      type: movies
     list_add:
       - movie_list: KEEPERS
-    accept_all: yes
 
   MoviesKeepQueue:
-    trakt_list:
-      username: lvleph
-      account: lvleph
+    template:
+      - moviesQueue
+    set:
       list: watchlist
       type: movies
     list_add:
       - movie_list: WATCH
-    accept_all: yes
 
   RemoveTrakt:
     filesystem:
