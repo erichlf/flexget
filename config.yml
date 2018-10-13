@@ -36,6 +36,9 @@ templates:
       specials: no
       propers: yes
       ratio: 3.0
+    content_size:
+      max: 1500
+      strict: yes
     include: [private/tvrss.yml]
     html:
       url: https://piratebaymirror.eu/browse/208/{{i}}/3/0
