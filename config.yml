@@ -181,30 +181,6 @@ tasks:
     list_add:
       - movie_list: WATCH
 
-  RemoveTrakt:
-    filesystem:
-      path:
-        - /volume1/Media/Videos/Movies
-        - /volume1/Media/Videos/To.Watch/Movies
-      recursive: yes
-      retrieve: files
-      regexp: '^.*[^sample].*\.(avi|mp4,mkv,m4v)$'
-    trakt_lookup: yes
-    accept_all: yes
-    list_remove:
-      - trakt_list:
-          username: lvleph
-          account: lvleph
-          list: Keepers
-          type: movies
-      - trakt_list:
-          username: lvleph
-          account: lvleph
-          list: watchlist
-          type: movies
-      - movie_list: WATCH
-      - movie_list: KEEPERS
-
 schedules:
   - tasks: [TVBest, TVBetter, TVAVG]
     interval:
@@ -215,6 +191,3 @@ schedules:
   - tasks: [MoviesKeepQueue, MoviesWatchQueue]
     interval:
       hours: 24
-  - tasks: RemoveTrakt
-    interval:
-      weeks: 4
