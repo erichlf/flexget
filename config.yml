@@ -4,137 +4,16 @@ web_server:
   run_v2: true
   port: '{? port ?}'
 
-templates:
-  main:
-    include: [private/transmission.yml]
-    regexp:
-      reject:
-        - \btrailer\b: {from: title}
-    content_filter:
-      require:
-        - '*.avi'
-        - '*.mkv'
-        - '*.mp4'
-        - '*.r0*'
-        - '*.rar'
-      reject:
-        - 'password.txt'
-        - '*.wmv'
-        - '*CD1*'
-    set:
-      main_file_only: yes
-      include_subs: yes
-
-  tv:
-    trakt_lookup: yes
-    if:
-      - trakt_ep_first_aired and trakt_ep_first_aired <= now - timedelta(days=2): accept
-    set:
-      label: tv
-      path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
-      content_filename: '{{trakt_ep_id}}.{{trakt_ep_name}}'
-      specials: no
-      propers: yes
-      ratio: 3.0
-    content_size:
-      max: 2600
-      strict: yes
-    include: [private/tvrss.yml]
-    html:
-      url: https://piratebaymirror.eu/browse/208/{{i}}/3/0
-      links_re: [magnet]
-      title_from: url
-      increment:
-        from: 0
-        to: 3
-
-  tvBest:
-    configure_series:
-      settings:
-        target: 1080p hdtv+
-        quality: <=1080p
-        timeframe: 30 minutes
-      from:
-        trakt_list:
-          username: lvleph
-          account: lvleph
-          list: TV Best
-          type: shows
-
-  tvBetter:
-    configure_series:
-      settings:
-        target: <=720p webrip+
-        quality: <=720p
-        timeframe: 30 minutes
-      from:
-        trakt_list:
-          username: lvleph
-          account: lvleph
-          list: TV Better
-          type: shows
-
-  tvAVG:
-    configure_series:
-      settings:
-        target: <=720p preair+
-        quality: <=720p
-        timeframe: 30 minutes
-      from:
-        trakt_list:
-          username: lvleph
-          account: lvleph
-          list: TV Average
-          type: shows
-
-  movies:
-    proper_movies: yes
-    exists_movie:
-      - /volume1/Media/Videos/Movies/
-      - /volume1/Media/Videos/To.Watch/Movies/
-    content_size:
-      max: 5000
-      strict: yes
-    set:
-      quality: dvdscr+
-      target: 720p ac3+
-      label: Movies
-      path: /volume1/Media/Videos/To.Watch/Movies/
-      ratio: 2.0
-    include: [private/moviesrss.yml]
-    html:
-      url: https://piratebaymirror.eu/browse/207/{{i}}/3/0
-      links_re: [magnet]
-      title_from: url
-      increment:
-        from: 0
-        to: 3
-
-  moviesKeep:
-    set:
-      label: keep
-      quality: 1080p
-    list_match:
-      from:
-        - movie_list: KEEPERS
-      remove_on_match: yes
-
-  moviesWatch:
-    set:
-      label: watch
-      quality: r5+
-    list_match:
-      from:
-        - movie_list: WATCH
-      remove_on_match: yes
-
-  moviesQueue:
-    trakt_list:
-      username: lvleph
-      account: lvleph
-      list: watchlist
-      type: movies
-    accept_all: yes
+schedules:
+  - tasks: [TVBest, TVBetter, TVAVG]
+    interval:
+      minutes: 15
+  - tasks: [MoviesWatch, MoviesKeep]
+    interval:
+      minutes: 60
+  - tasks: [MoviesKeepQueue, MoviesWatchQueue]
+    interval:
+      hours: 24
 
 tasks:
   TVBest:
@@ -184,13 +63,129 @@ tasks:
     list_add:
       - movie_list: WATCH
 
-schedules:
-  - tasks: [TVBest, TVBetter, TVAVG]
-    interval:
-      minutes: 15
-  - tasks: [MoviesWatch, MoviesKeep]
-    interval:
-      minutes: 60
-  - tasks: [MoviesKeepQueue, MoviesWatchQueue]
-    interval:
-      hours: 24
+templates:
+  main:
+    include: [private/transmission.yml]
+    regexp:
+      reject:
+        - \btrailer\b: {from: title}
+    content_filter:
+      require:
+        - '*.avi'
+        - '*.mkv'
+      reject:
+        - 'password.txt'
+        - '*.wmv'
+        - '*CD1*'
+        - '*.mp4'
+        - '*.r0*'
+        - '*.rar'
+    set:
+      main_file_only: yes
+      include_subs: yes
+
+  tv:
+    trakt_lookup: yes
+    if:
+      - trakt_ep_first_aired and trakt_ep_first_aired <= now - timedelta(days=2): accept
+    set:
+      label: tv
+      path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
+      content_filename: '{{trakt_ep_id}}.{{trakt_ep_name}}'
+      specials: no
+      propers: yes
+      ratio: 3.
+      upgrade: n
+      timeframe: 30 minute
+      type: shows
+      quality: 720p-1080p
+    content_size:
+      max: 2600
+      strict: yes
+    include: [private/tvrss.yml]
+    html:
+      url: https://piratebaymirror.eu/browse/208/{{i}}/3/0
+      links_re: [magnet]
+      title_from: url
+      increment:
+        from: 0
+        to: 3
+
+  tvBest:
+    configure_series:
+      settings:
+        target: 1080p hdtv+
+      from:
+        trakt_list:
+          username: lvleph
+          account: lvleph
+          list: TV Best
+
+  tvBetter:
+    configure_series:
+      settings:
+        target: 720p webrip+
+      from:
+        trakt_list:
+          username: lvleph
+          account: lvleph
+          list: TV Better
+
+  tvAVG:
+    configure_series:
+      settings:
+        target: 720p preair+
+      from:
+        trakt_list:
+          username: lvleph
+          account: lvleph
+          list: TV Average
+
+  movies:
+    proper_movies: yes
+    exists_movie:
+      - /volume1/Media/Videos/Movies/
+      - /volume1/Media/Videos/To.Watch/Movies/
+    content_size:
+      max: 5000
+      strict: yes
+    set:
+      quality: dvdscr+
+      target: 720p-1080p ac3+
+      label: Movies
+      path: /volume1/Media/Videos/To.Watch/Movies/
+      ratio: 2.0
+    include: [private/moviesrss.yml]
+    html:
+      url: https://piratebaymirror.eu/browse/207/{{i}}/3/0
+      links_re: [magnet]
+      title_from: url
+      increment:
+        from: 0
+        to: 3
+
+  moviesKeep:
+    set:
+      label: keep
+      quality: 1080p ac3+
+    list_match:
+      from:
+        - movie_list: KEEPERS
+      remove_on_match: yes
+
+  moviesWatch:
+    set:
+      label: watch
+      quality: r5-1080p
+    list_match:
+      from:
+        - movie_list: WATCH
+      remove_on_match: yes
+
+  moviesQueue:
+    trakt_list:
+      username: lvleph
+      account: lvleph
+      list: watchlist
+      type: movies
+    accept_all: yes
