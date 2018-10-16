@@ -91,7 +91,9 @@ templates:
     set:
       label: tv
       path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
-      content_filename: '{{trakt_ep_id}}.{{trakt_ep_name}}'
+      if:
+        - trakt_ep_name:
+          content_filename: '{{trakt_ep_id}}.{{trakt_ep_name}}'
       specials: no
       propers: yes
       ratio: 3.
@@ -114,7 +116,7 @@ templates:
   tvBest:
     configure_series:
       settings:
-        target: 1080p hdtv+
+        target: 720p-1080p hdtv+
       from:
         trakt_list:
           username: lvleph
