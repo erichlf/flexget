@@ -87,12 +87,12 @@ templates:
   tv:
     trakt_lookup: yes
     if:
-      - trakt_ep_first_aired and trakt_ep_first_aired <= now - timedelta(days=2): accept
+      - "trakt_ep_first_aired and trakt_ep_first_aired <= now - timedelta(days=2)": accept
     set:
       label: tv
       path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
       if:
-        - trakt_ep_name:
+        - "trakt_ep_name":
           content_filename: '{{trakt_ep_id}}.{{trakt_ep_name}}'
       specials: no
       propers: yes
