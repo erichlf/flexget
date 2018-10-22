@@ -11,11 +11,20 @@ schedules:
   - tasks: [MoviesWatch, MoviesKeep]
     interval:
       minutes: 60
-  - tasks: [MoviesKeepQueue, MoviesWatchQueue]
+  - tasks: [MoviesKeepQueue, MoviesWatchQueue, bakDocs]
     interval:
       hours: 24
+  - tasks: [MKVQueue]
+    interval:
+      weeks: 4
 
 tasks:
+  bakDocs:
+    exec:
+      - rsync -Phavz chantelle@'{? rsyncIP ?}':Documents/ /volume1/Media/chantelles.Docs/ &> /var/log/chantelleRsync.log &
+      - rsync -Phavz erichlf@'{? rsyncIP ?}':Documents/ /volume1/Media/erichs.Docs/ &> /var/log/erichRsync.log &
+    no_entries_ok: yes
+
   TVBest:
     template:
       - main
@@ -40,6 +49,16 @@ tasks:
       - movies
       - moviesKeep
 
+  AVI2MKV:
+    template:
+      - main
+      - movies
+      - moviesKeep
+    set:
+      from:
+        - movie_list: AVI2WATCH
+    seen: local
+
   MoviesWatch:
     template:
       - main
@@ -50,18 +69,31 @@ tasks:
     template:
       - moviesQueue
     set:
-      list: Keepers
+      list: watchlist
+      type: movies
     list_add:
-      - movie_list: KEEPERS
+      - movie_list: WATCH
 
   MoviesKeepQueue:
     template:
       - moviesQueue
     set:
-      list: watchlist
+      list: Keepers
       type: movies
     list_add:
-      - movie_list: WATCH
+      - movie_list: KEEPERS
+
+  MKVQueue:
+    filesystem:
+      path:
+        - /volume1/Media/Videos/Movies
+      recursive: yes
+      retrieve: files
+      regexp: '.+\.(avi|mp4|m4v)$'
+    accept_all: yes
+    trakt_lookup: yes
+    list_add:
+      - movie_list: AVI2MKV
 
 templates:
   main:
@@ -75,11 +107,7 @@ templates:
         - '*.mkv'
       reject:
         - 'password.txt'
-        - '*.wmv'
         - '*CD1*'
-        - '*.mp4'
-        - '*.r0*'
-        - '*.rar'
     set:
       main_file_only: yes
       include_subs: yes
@@ -91,9 +119,7 @@ templates:
     set:
       label: tv
       path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
-      if:
-        - "trakt_ep_name":
-          content_filename: '{{trakt_ep_id}}.{{trakt_ep_name}}'
+#      content_filename: "{% if trakt_ep_name is defined}{{trakt_ep_id}}.{{trakt_ep_name.repalce(' ', '.'}}{% else %}{{series_name[:-7].replace(' ', '.')}}.{{series_id}}{% endif %}"
       specials: no
       propers: yes
       ratio: 3.
@@ -170,6 +196,8 @@ templates:
     set:
       label: keep
       quality: 1080p ac3+
+      require:
+        - '*.mkv'
     list_match:
       from:
         - movie_list: KEEPERS
@@ -191,3 +219,4 @@ templates:
       list: watchlist
       type: movies
     accept_all: yes
+
