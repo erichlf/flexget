@@ -56,8 +56,10 @@ tasks:
       - moviesKeep
     set:
       from:
-        - movie_list: AVI2WATCH
+        - movie_list: AVI2MKV
     seen: local
+    list_remove:
+      - movie_list: AVI2MKV
 
   MoviesWatch:
     template:
@@ -94,6 +96,7 @@ tasks:
     trakt_lookup: yes
     list_add:
       - movie_list: AVI2MKV
+    seen: local
 
 templates:
   main:
