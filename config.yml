@@ -141,6 +141,13 @@ templates:
       increment:
         from: 0
         to: 3
+    html:
+      url: https://rarbg.to/torrents.php?category=18%3B41&page={i}
+      links_re: [magnet]
+      title_from: url
+      increment:
+        from: 0
+        to: 3
 
   tvBest:
     configure_series:
@@ -189,6 +196,13 @@ templates:
     include: [private/moviesrss.yml]
     html:
       url: https://piratebaymirror.eu/browse/207/{{i}}/3/0
+      links_re: [magnet]
+      title_from: url
+      increment:
+        from: 0
+        to: 3
+    html:
+      url: https://rarbg.to/torrents.php?category=17%3B44%3B45&page={i}
       links_re: [magnet]
       title_from: url
       increment:
