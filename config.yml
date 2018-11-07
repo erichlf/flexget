@@ -21,8 +21,10 @@ schedules:
 tasks:
   bakDocs:
     exec:
-      - rsync -Phavz chantelle@'{? rsyncIP ?}':Documents/ /volume1/Media/chantelles.Docs/ &> /var/log/chantelleRsync.log &
-      - rsync -Phavz erichlf@'{? rsyncIP ?}':Documents/ /volume1/Media/erichs.Docs/ &> /var/log/erichRsync.log &
+      on_start:
+        phase:
+          - rsync -Phavz chantelle@'{? rsyncIP ?}':Documents/ /volume1/Media/chantelles.Docs/ &> /var/log/chantelleRsync.log &
+          - rsync -Phavz erichlf@'{? rsyncIP ?}':Documents/ /volume1/Media/erichs.Docs/ &> /var/log/erichRsync.log &
     no_entries_ok: yes
 
   TVBest:
