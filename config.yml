@@ -8,7 +8,7 @@ schedules:
   - tasks: [TVBest, TVBetter, TVAVG]
     interval:
       minutes: 15
-  - tasks: [MoviesWatch, MoviesKeep]
+  - tasks: [MoviesWatch, MoviesKeep, AVI2MKV]
     interval:
       minutes: 60
   - tasks: [MoviesKeepQueue, MoviesWatchQueue, bakDocs]
@@ -134,20 +134,21 @@ templates:
       max: 2600
       strict: yes
     include: [private/tvrss.yml]
-    html:
-      url: https://piratebaymirror.eu/browse/208/{{i}}/3/0
-      links_re: [magnet]
-      title_from: url
-      increment:
-        from: 0
-        to: 3
-    html:
-      url: https://rarbg.to/torrents.php?category=18%3B41&page={i}
-      links_re: [magnet]
-      title_from: url
-      increment:
-        from: 0
-        to: 3
+    inputs:
+      - html:
+          url: https://piratebaymirror.eu/browse/208/{{i}}/3/0
+          links_re: [magnet]
+          title_from: url
+          increment:
+            from: 0
+            to: 3
+      - html:
+          url: https://rarbg.to/torrents.php?category=18%3B41&page={i}
+          links_re: [magnet]
+          title_from: url
+          increment:
+            from: 0
+            to: 3
 
   tvBest:
     configure_series:
@@ -194,20 +195,21 @@ templates:
       path: /volume1/Media/Videos/To.Watch/Movies/
       ratio: 2.0
     include: [private/moviesrss.yml]
-    html:
-      url: https://piratebaymirror.eu/browse/207/{{i}}/3/0
-      links_re: [magnet]
-      title_from: url
-      increment:
-        from: 0
-        to: 3
-    html:
-      url: https://rarbg.to/torrents.php?category=17%3B44%3B45&page={i}
-      links_re: [magnet]
-      title_from: url
-      increment:
-        from: 0
-        to: 3
+    inputs:
+      - html:
+          url: https://piratebaymirror.eu/browse/207/{{i}}/3/0
+          links_re: [magnet]
+          title_from: url
+          increment:
+            from: 0
+            to: 3
+      - html:
+          url: https://rarbg.to/torrents.php?category=17%3B44%3B45&page={i}
+          links_re: [magnet]
+          title_from: url
+          increment:
+            from: 0
+            to: 3
 
   moviesKeep:
     set:
