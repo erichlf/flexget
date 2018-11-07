@@ -145,7 +145,7 @@ templates:
             from: 0
             to: 3
       - html:
-          url: https://rarbg.to/torrents.php?category=18%3B41&page={i}
+          url: https://rarbg.to/torrents.php?category=18%3B41&page={{i}}
           links_re: [magnet]
           title_from: url
           increment:
@@ -206,7 +206,7 @@ templates:
             from: 0
             to: 3
       - html:
-          url: https://rarbg.to/torrents.php?category=17%3B44%3B45&page={i}
+          url: https://rarbg.to/torrents.php?category=17%3B44%3B45&page={{i}}
           links_re: [magnet]
           title_from: url
           increment:
