@@ -136,7 +136,7 @@ templates:
     include: [private/tvrss.yml]
     inputs:
       - html:
-          url: https://piratebaymirror.eu/browse/208/{{i}}/3/0
+          url: https://thepiratebay.org/browse/208/{{i}}/3/0
           links_re: [magnet]
           title_from: url
           increment:
@@ -197,7 +197,7 @@ templates:
     include: [private/moviesrss.yml]
     inputs:
       - html:
-          url: https://piratebaymirror.eu/browse/207/{{i}}/3/0
+          url: https://thepiratebay.org/browse/207/{{i}}/3/0
           links_re: [magnet]
           title_from: url
           increment:
