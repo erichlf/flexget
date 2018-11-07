@@ -60,8 +60,6 @@ tasks:
       from:
         - movie_list: AVI2MKV
     seen: local
-    list_remove:
-      - movie_list: AVI2MKV
 
   MoviesWatch:
     template:
