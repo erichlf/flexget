@@ -122,7 +122,6 @@ templates:
     set:
       label: tv
       path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
-#      content_filename: "{% if trakt_ep_name is defined}{{trakt_ep_id}}.{{trakt_ep_name.repalce(' ', '.'}}{% else %}{{series_name[:-7].replace(' ', '.')}}.{{series_id}}{% endif %}"
       specials: no
       propers: yes
       ratio: 3.
@@ -135,13 +134,6 @@ templates:
       strict: yes
     include: [private/tvrss.yml]
     inputs:
-      - html:
-          url: https://thepiratebay.org/browse/208/{{i}}/3/0
-          links_re: [magnet]
-          title_from: url
-          increment:
-            from: 0
-            to: 3
       - html:
           url: https://rarbg.to/torrents.php?category=18%3B41&page={{i}}
           links_re: [magnet]
@@ -190,19 +182,12 @@ templates:
       strict: yes
     set:
       quality: dvdscr+
-      target: 720p-1080p ac3+
+      target: 720p-1080p ac3+ h264
       label: Movies
       path: /volume1/Media/Videos/To.Watch/Movies/
       ratio: 2.0
     include: [private/moviesrss.yml]
     inputs:
-      - html:
-          url: https://thepiratebay.org/browse/207/{{i}}/3/0
-          links_re: [magnet]
-          title_from: url
-          increment:
-            from: 0
-            to: 3
       - html:
           url: https://rarbg.to/torrents.php?category=17%3B44%3B45&page={{i}}
           links_re: [magnet]
@@ -214,7 +199,7 @@ templates:
   moviesKeep:
     set:
       label: keep
-      quality: 1080p ac3+
+      quality: 1080p ac3+ h264
       require:
         - '*.mkv'
     list_match:
@@ -225,7 +210,7 @@ templates:
   moviesWatch:
     set:
       label: watch
-      quality: r5-1080p
+      quality: 720p-1080p r5+
     list_match:
       from:
         - movie_list: WATCH
