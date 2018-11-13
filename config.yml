@@ -8,10 +8,10 @@ schedules:
   - tasks: [TVBest, TVBetter, TVAVG]
     interval:
       minutes: 15
-  - tasks: [MoviesWatch, MoviesKeep, AVI2MKV]
+  - tasks: [MoviesWatch, MoviesKeep]
     interval:
       minutes: 60
-  - tasks: [MoviesKeepQueue, MoviesWatchQueue, bakDocs]
+  - tasks: [AVI2MKV, MoviesKeepQueue, MoviesWatchQueue, bakDocs]
     interval:
       hours: 24
   - tasks: [MKVQueue]
@@ -56,9 +56,16 @@ tasks:
       - main
       - movies
       - moviesKeep
-    set:
-      from:
+    discover:
+      what:
         - movie_list: AVI2MKV
+      from:
+        - torrentday:
+            uid: '153593'
+            cfduid: '{? tdCFDUID ?}'
+            passkey: '{? tdPASSKEY ?}'
+            rss_key: '{? tdRSS_KEY ?}'
+            category: movHD
     seen: local
 
   MoviesWatch:
