@@ -66,6 +66,11 @@ tasks:
             passkey: '{? tdPASSKEY ?}'
             rss_key: '{? tdRSS_KEY ?}'
             category: movHD
+        - rarbg:
+            category: [17, 44]
+        - piratebay:
+            category: 207
+
     seen: local
 
   MoviesWatch:
