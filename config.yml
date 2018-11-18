@@ -140,6 +140,21 @@ templates:
       max: 2600
       strict: yes
     include: [private/tvrss.yml]
+    inputs:
+      - html:
+          url: https://thepiratebay.org/browse/208/{{i}}/3/0
+          links_re: [magnet]
+          title_from: url
+          increment:
+            from: 0
+            to: 3
+      - html:
+          url: https://rarbg.to/torrents.php?category=18%3B41&page={{i}}
+          links_re: [magnet]
+          title_from: url
+          increment:
+            from: 0
+            to: 3
 
   tvBest:
     configure_series:
@@ -186,6 +201,21 @@ templates:
       path: /volume1/Media/Videos/To.Watch/Movies/
       ratio: 2.0
     include: [private/moviesrss.yml]
+    inputs:
+      - html:
+          url: https://thepiratebay.org/browse/207/{{i}}/3/0
+          links_re: [magnet]
+          title_from: url
+          increment:
+            from: 0
+            to: 3
+      - html:
+          url: https://rarbg.to/torrents.php?category=17%3B44&page={{i}}
+          links_re: [magnet]
+          title_from: url
+          increment:
+            from: 0
+            to: 3
 
   moviesKeep:
     set:
