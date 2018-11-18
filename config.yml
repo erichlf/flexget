@@ -125,7 +125,7 @@ templates:
   tv:
     trakt_lookup: yes
     if:
-      - "trakt_ep_first_aired and trakt_ep_first_aired > now - timedelta(days=2)": reject
+      - "trakt_ep_first_aired and trakt_ep_first_aired > (now - timedelta(days=2))": reject
     set:
       label: tv
       path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
@@ -140,14 +140,6 @@ templates:
       max: 2600
       strict: yes
     include: [private/tvrss.yml]
-    inputs:
-      - html:
-          url: https://rarbg.to/torrents.php?category=18%3B41&page={{i}}
-          links_re: [magnet]
-          title_from: url
-          increment:
-            from: 0
-            to: 3
 
   tvBest:
     configure_series:
@@ -194,14 +186,6 @@ templates:
       path: /volume1/Media/Videos/To.Watch/Movies/
       ratio: 2.0
     include: [private/moviesrss.yml]
-    inputs:
-      - html:
-          url: https://rarbg.to/torrents.php?category=17%3B44%3B45&page={{i}}
-          links_re: [magnet]
-          title_from: url
-          increment:
-            from: 0
-            to: 3
 
   moviesKeep:
     set:
