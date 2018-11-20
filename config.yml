@@ -67,7 +67,7 @@ tasks:
             rss_key: '{? tdRSS_KEY ?}'
             category: movHD
         - rarbg:
-            category: [17, 44]
+            category: [1, 11, 22, 44]
         - piratebay:
             category: 207
 
