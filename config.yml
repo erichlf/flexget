@@ -130,7 +130,7 @@ templates:
   tv:
     trakt_lookup: yes
     if:
-      - "trakt_ep_first_aired and trakt_ep_first_aired > (now - timedelta(days=2))": reject
+      - "not (trakt_ep_first_aired) and trakt_ep_first_aired > (now - timedelta(days=6))": reject
     set:
       label: tv
       path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
@@ -143,18 +143,11 @@ templates:
       quality: 720p-1080p
     content_size:
       max: 2600
-      strict: yes
+      strict: no
     include: [private/tvrss.yml]
     inputs:
       - html:
           url: https://thepiratebay.org/browse/208/{{i}}/3/0
-          links_re: [magnet]
-          title_from: url
-          increment:
-            from: 0
-            to: 3
-      - html:
-          url: https://rarbg.to/torrents.php?category=18%3B41&page={{i}}
           links_re: [magnet]
           title_from: url
           increment:
@@ -198,7 +191,7 @@ templates:
       - /volume1/Media/Videos/To.Watch/Movies/
     content_size:
       max: 6000
-      strict: yes
+      strict: no
     set:
       quality: dvdscr+
       target: 720p-1080p ac3+ h264
@@ -209,13 +202,6 @@ templates:
     inputs:
       - html:
           url: https://thepiratebay.org/browse/207/{{i}}/3/0
-          links_re: [magnet]
-          title_from: url
-          increment:
-            from: 0
-            to: 3
-      - html:
-          url: https://rarbg.to/torrents.php?category=17%3B44&page={{i}}
           links_re: [magnet]
           title_from: url
           increment:
