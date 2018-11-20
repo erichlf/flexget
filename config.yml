@@ -153,6 +153,7 @@ templates:
           increment:
             from: 0
             to: 3
+      - rss: https://rarbg.to/rssdd.php?category=18%3B41
 
   tvBest:
     configure_series:
@@ -207,6 +208,7 @@ templates:
           increment:
             from: 0
             to: 3
+      - rss: https://rarbg.to/rssdd.php?category=17%3B44
 
   moviesKeep:
     set:
