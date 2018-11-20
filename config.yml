@@ -130,7 +130,7 @@ templates:
   tv:
     trakt_lookup: yes
     if:
-      - "not (trakt_ep_first_aired) and trakt_ep_first_aired > (now - timedelta(days=6))": reject
+      - "trakt_ep_first_aired is none or trakt_ep_first_aired > (now - timedelta(days=6))": reject
     set:
       label: tv
       path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
