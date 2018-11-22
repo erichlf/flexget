@@ -56,22 +56,7 @@ tasks:
       - main
       - movies
       - moviesKeep
-    discover:
-      what:
-        - movie_list: AVI2MKV
-      from:
-        - torrentday:
-            uid: '153593'
-            cfduid: '{? tdCFDUID ?}'
-            passkey: '{? tdPASSKEY ?}'
-            rss_key: '{? tdRSS_KEY ?}'
-            category: movHD
-        - rarbg:
-            category: [1, 11, 22, 44]
-        - piratebay:
-            category: 207
-
-    seen: local
+      - avi2mkv
 
   MoviesWatch:
     template:
@@ -126,6 +111,27 @@ templates:
     set:
       main_file_only: yes
       include_subs: yes
+
+  avi2mkv:
+    discover:
+      what:
+        - movie_list: AVI2MKV
+      from:
+        - torrentday:
+            uid: '153593'
+            cfduid: '{? tdCFDUID ?}'
+            passkey: '{? tdPASSKEY ?}'
+            rss_key: '{? tdRSS_KEY ?}'
+            category: movHD
+        - rarbg:
+            category: [17, 44, 45]
+        - piratebay:
+            category: 207
+    list_match:
+      from:
+        - movie_list: AVI2MKV
+    seen: local
+    limit_new: 5
 
   tv:
     trakt_lookup: yes
