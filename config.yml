@@ -102,15 +102,10 @@ templates:
       reject:
         - \btrailer\b: {from: title}
     content_filter:
-      require:
-        - '*.avi'
-        - '*.mkv'
+      require: '*.mkv'
       reject:
         - 'password.txt'
         - '*CD1*'
-    set:
-      main_file_only: yes
-      include_subs: yes
 
   avi2mkv:
     discover:
@@ -130,6 +125,8 @@ templates:
     list_match:
       from:
         - movie_list: AVI2MKV
+    content_filter:
+      require: '*.mkv'
     seen: local
     limit_new: 5
 
