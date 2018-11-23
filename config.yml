@@ -123,7 +123,7 @@ templates:
             cfduid: '{? tdCFDUID ?}'
             passkey: '{? tdPASSKEY ?}'
             rss_key: '{? tdRSS_KEY ?}'
-            category: movHD
+            category: 11
         - rarbg:
             category: [17, 44, 45]
         - piratebay:
@@ -131,8 +131,6 @@ templates:
     list_match:
       from:
         - movie_list: AVI2MKV
-    content_filter:
-      require: '*.mkv'
     seen: local
     limit_new: 5
 
@@ -198,7 +196,7 @@ templates:
       - /volume1/Media/Videos/Movies/
       - /volume1/Media/Videos/To.Watch/Movies/
     content_size:
-      max: 6000
+      max: 8000
       strict: no
     set:
       quality: dvdscr+
