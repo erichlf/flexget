@@ -5,13 +5,13 @@ web_server:
   port: '{? port ?}'
 
 schedules:
-  - tasks: [TVBest, TVBetter, TVAVG]
+  - tasks: TV
     interval:
       minutes: 15
-  - tasks: [MoviesWatch, MoviesKeep]
+  - tasks: [Movies]
     interval:
       minutes: 60
-  - tasks: [AVI2MKV, MoviesKeepQueue, MoviesWatchQueue, bakDocs]
+  - tasks: [AVI2MKV, MoviesQueue, bakDocs]
     interval:
       hours: 24
   - tasks: [MKVQueue]
@@ -27,60 +27,30 @@ tasks:
           - rsync -Phavz erichlf@'{? rsyncIP ?}':Documents/ /volume1/Media/erichs.Docs/ &> /var/log/erichRsync.log &
     no_entries_ok: yes
 
-  TVBest:
+  TV:
     template:
       - main
       - tv
-      - tvBest
-
-  TVBetter:
-    template:
-      - main
-      - tv
-      - tvBetter
-
-  TVAVG:
-    template:
-      - main
-      - tv
-      - tvAVG
-
-  MoviesKeep:
-    template:
-      - main
-      - movies
-      - moviesKeep
 
   AVI2MKV:
     template:
       - main
       - movies
-      - moviesKeep
       - avi2mkv
 
-  MoviesWatch:
+  Movies:
     template:
       - main
       - movies
-      - moviesWatch
 
-  MoviesWatchQueue:
+  MoviesQueue:
     template:
       - moviesQueue
     set:
       list: watchlist
       type: movies
     list_add:
-      - movie_list: WATCH
-
-  MoviesKeepQueue:
-    template:
-      - moviesQueue
-    set:
-      list: Keepers
-      type: movies
-    list_add:
-      - movie_list: KEEPERS
+      - movie_list: MOVIES
 
   MKVQueue:
     filesystem:
@@ -112,6 +82,8 @@ templates:
         - '*.wmv'
         - 'password.txt'
         - '*CD1*'
+    set:
+      ratio: 3.
 
   avi2mkv:
     discover:
@@ -141,11 +113,10 @@ templates:
       path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
       specials: no
       propers: yes
-      ratio: 3.
       upgrade: no
       timeframe: 30 minute
       type: shows
-      quality: 720p-1080p
+      quality: 720p-1080p hdtv+
     content_size:
       max: 2600
       strict: no
@@ -159,8 +130,6 @@ templates:
             from: 0
             to: 3
       - rss: https://rarbg.to/rssdd.php?category=18%3B41
-
-  tvBest:
     configure_series:
       settings:
         target: 720p-1080p hdtv+
@@ -168,27 +137,7 @@ templates:
         trakt_list:
           username: lvleph
           account: lvleph
-          list: TV Best
-
-  tvBetter:
-    configure_series:
-      settings:
-        target: 720p webrip+
-      from:
-        trakt_list:
-          username: lvleph
-          account: lvleph
-          list: TV Better
-
-  tvAVG:
-    configure_series:
-      settings:
-        target: 720p preair+
-      from:
-        trakt_list:
-          username: lvleph
-          account: lvleph
-          list: TV Average
+          list: TV
 
   movies:
     proper_movies: yes
@@ -203,7 +152,6 @@ templates:
       target: 720p-1080p ac3+ h264
       label: Movies
       path: /volume1/Media/Videos/To.Watch/Movies/
-      ratio: 2.0
     include: [private/moviesrss.yml]
     inputs:
       - html:
@@ -214,25 +162,9 @@ templates:
             from: 0
             to: 3
       - rss: https://rarbg.to/rssdd.php?category=17%3B44
-
-  moviesKeep:
-    set:
-      label: keep
-      quality: 1080p ac3+ h264
-      require:
-        - '*.mkv'
     list_match:
       from:
-        - movie_list: KEEPERS
-      remove_on_match: yes
-
-  moviesWatch:
-    set:
-      label: watch
-      quality: 720p-1080p r5+
-    list_match:
-      from:
-        - movie_list: WATCH
+        - movie_list: MOVIES
       remove_on_match: yes
 
   moviesQueue:
