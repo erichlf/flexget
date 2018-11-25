@@ -104,7 +104,7 @@ templates:
       from:
         - movie_list: AVI2MKV
     seen: local
-    limit_new: 5
+    limit_new: 10
 
   tv:
     trakt_lookup: yes
