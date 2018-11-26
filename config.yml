@@ -84,6 +84,7 @@ templates:
         - '*CD1*'
     set:
       ratio: 3.
+    torrent_alive: 1
 
   avi2mkv:
     discover:
@@ -100,11 +101,13 @@ templates:
             category: [17, 44, 45]
         - piratebay:
             category: 207
+      release_estimations: ignore  # because blu-ray.org is screwing this up
     list_match:
       from:
         - movie_list: AVI2MKV
     seen: local
     limit_new: 10
+    torrent_alive: 2  # some of these are old so we need to be sure it can dl
 
   tv:
     trakt_lookup: yes
