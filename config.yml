@@ -42,6 +42,9 @@ tasks:
     template:
       - main
       - movies
+    exists_movie:
+      - /volume1/Media/Videos/Movies/
+      - /volume1/Media/Videos/To.Watch/Movies/
 
   MoviesQueue:
     template:
@@ -144,9 +147,6 @@ templates:
 
   movies:
     proper_movies: yes
-    exists_movie:
-      - /volume1/Media/Videos/Movies/
-      - /volume1/Media/Videos/To.Watch/Movies/
     content_size:
       max: 8000
       strict: no
