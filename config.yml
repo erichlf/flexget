@@ -76,6 +76,7 @@ templates:
       reject:
         - \btrailer\b: {from: title}
         - (h|H)264: {from: title}
+        - (hevc|HEVC): {from: title}
     content_filter:
       require: '*.mkv'
       reject:
