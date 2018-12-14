@@ -147,6 +147,7 @@ templates:
           list: TV
 
   movies:
+    trakt_lookup: yes
     proper_movies: yes
     content_size:
       max: 8000
