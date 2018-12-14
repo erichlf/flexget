@@ -102,10 +102,6 @@ templates:
             passkey: '{? tdPASSKEY ?}'
             rss_key: '{? tdRSS_KEY ?}'
             category: 11
-        - rarbg:
-            category: [17, 44, 45]
-        - piratebay:
-            category: 207
       release_estimations: ignore  # because blu-ray.org is screwing this up
     list_match:
       from:
