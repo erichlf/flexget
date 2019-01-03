@@ -144,7 +144,8 @@ templates:
         trakt_list:
           username: lvleph
           account: lvleph
-          list: TV
+          list: watchlist
+          type: shows
 
   movies:
     trakt_lookup: yes
