@@ -23,8 +23,10 @@ tasks:
     exec:
       on_start:
         phase:
-          - rsync -Phavz chantelle@'{? rsyncIP ?}':Documents/ /volume1/Media/chantelles.Docs/ &> /var/log/chantelleRsync.log &
-          - rsync -Phavz erichlf@'{? rsyncIP ?}':Documents/ /volume1/Media/erichs.Docs/ &> /var/log/erichRsync.log &
+          - echo $(date) >> /var/log/chantelleRsync.log
+          - rsync -Phavz -e "ssh -o StrictHostKeyChecking=no" chantelle@{? rsyncIP ?}:Documents/ /volume1/Media/chantelles.Docs/ &>> /var/log/chantelleRsync.log &
+          - echo $(date) >> /var/log/erichRsync.log
+          - rsync -Phavz -e "ssh -o StrictHostKeyChecking=no" erichlf@{? rsyncIP ?}:Documents/ /volume1/Media/erichs.Docs/ &>> /var/log/erichRsync.log &
     no_entries_ok: yes
 
   TV:
@@ -125,7 +127,7 @@ templates:
       type: shows
       quality: 720p-1080p hdtv+
     content_size:
-      max: 2600
+      max: 5000
       strict: no
     include: [private/tvrss.yml]
     inputs:
