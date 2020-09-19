@@ -24,9 +24,9 @@ tasks:
       on_start:
         phase:
           - echo $(date) >> /var/log/chantelleRsync.log
-          - rsync -Phavz -e "ssh -o StrictHostKeyChecking=no" chantelle@{? rsyncIP ?}:Documents/ /volume1/Media/chantelles.Docs/ &>> /var/log/chantelleRsync.log &
+          - rsync -Phavz -e "ssh -o StrictHostKeyChecking=no" chantelle@{? rsyncIP ?}:Documents/ /share/Public/chantelles.Docs/ &>> /var/log/chantelleRsync.log &
           - echo $(date) >> /var/log/erichRsync.log
-          - rsync -Phavz -e "ssh -o StrictHostKeyChecking=no" erichlf@{? rsyncIP ?}:Documents/ /volume1/Media/erichs.Docs/ &>> /var/log/erichRsync.log &
+          - rsync -Phavz -e "ssh -o StrictHostKeyChecking=no" erichlf@{? rsyncIP ?}:Documents/ /share/Public/erichs.Docs/ &>> /var/log/erichRsync.log &
     no_entries_ok: yes
 
   TV:
@@ -45,8 +45,8 @@ tasks:
       - main
       - movies
     exists_movie:
-      - /volume1/Media/Videos/Movies/
-      - /volume1/Media/Videos/To.Watch/Movies/
+      - /share/Public/Videos/Movies/
+      - /share/Public/Videos/To.Watch/Movies/
 
   MoviesQueue:
     trakt_list:
@@ -61,7 +61,7 @@ tasks:
   MKVQueue:
     filesystem:
       path:
-        - /volume1/Media/Videos/Movies
+        - /share/Public/Videos/Movies
       recursive: yes
       retrieve: files
       regexp: '.+\.(avi|mp4|m4v)$'
@@ -77,8 +77,6 @@ templates:
     regexp:
       reject:
         - \btrailer\b: {from: title}
-        - (h|H)264: {from: title}
-        - (hevc|HEVC): {from: title}
         - \b(HC|hc)\b: {from: title}
         - \b(cam|CAM)\b: {from: title}
         - \b(hdcam|HDCAM)\b: {from: title}
@@ -119,7 +117,7 @@ templates:
     trakt_lookup: yes
     set:
       label: tv
-      path: /volume1/Media/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
+      path: /share/Public/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
       specials: no
       propers: yes
       upgrade: no
@@ -157,9 +155,9 @@ templates:
       strict: no
     set:
       quality: dvdscr+
-      target: 720p-1080p ac3+ h264
+      target: 720p-1080p ac3+ h264+
       label: Movies
-      path: /volume1/Media/Videos/To.Watch/Movies/
+      path: /share/Public/Videos/To.Watch/Movies/
     include: [private/moviesrss.yml]
     inputs:
       - html:
