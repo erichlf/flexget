@@ -117,7 +117,7 @@ templates:
     trakt_lookup: yes
     set:
       label: tv
-      path: /share/Public/Videos/To.Watch/TV/{{series_name[:-7].replace(' ', '.')}}/
+      path: /share/Public/Videos/To.Watch/TV/{{series_name.replace(' ', '.')}}/
       specials: no
       propers: yes
       upgrade: no
@@ -146,6 +146,7 @@ templates:
           account: lvleph
           list: watchlist
           type: shows
+    require_field: [series_name]
 
   movies:
     trakt_lookup: yes
@@ -172,4 +173,3 @@ templates:
       from:
         - movie_list: MOVIES
       remove_on_match: yes
-
