@@ -1,7 +1,6 @@
 variables: private/variables.yml
 
 web_server:
-  run_v2: true
   port: '{? port ?}'
 
 schedules:
@@ -117,7 +116,7 @@ templates:
     trakt_lookup: yes
     set:
       label: tv
-      path: /share/Public/Videos/To.Watch/TV/{{series_name.replace(' ', '.')}}/
+      path: /share/Public/Videos/To.Watch/TV/{{title | re_replace('[sS][0-9]{1,2}[eE][0-9]{1,3}.+', '') | replace('.', ' ') | replace(':', '') | title() | re_replace('[. ]$', '') | replace(' ', '.') }}/
       specials: no
       propers: yes
       upgrade: no
@@ -144,9 +143,8 @@ templates:
         trakt_list:
           username: lvleph
           account: lvleph
-          list: watchlist
+          list: TV
           type: shows
-    require_field: [series_name]
 
   movies:
     trakt_lookup: yes
