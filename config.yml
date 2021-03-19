@@ -66,7 +66,7 @@ templates:
     trakt_lookup: yes
     set:
       label: tv
-      path: /media/NFS/Media-NAS/Videos/To.Watch/TV/{{title | re_replace('[sS][0-9]{1,2}[eE][0-9]{1,3}.+', '') | replace('.', ' ') | replace(':', '') | title() | re_replace('[. ]$', '') | replace(' ', '.') }}/
+      path: /share/Public/Videos/To.Watch/TV/{{title | re_replace('[sS][0-9]{1,2}[eE][0-9]{1,3}.+', '') | replace('.', ' ') | replace(':', '') | title() | re_replace('[. ]$', '') | replace(' ', '.') }}/
       specials: no
       propers: yes
       upgrade: no
@@ -106,7 +106,7 @@ templates:
       quality: dvdscr+
       target: 720p-1080p ac3+ h264+
       label: Movies
-      path: /media/NFS/Media-NAS/Videos/To.Watch/Movies/
+      path: /share/Public/Videos/To.Watch/Movies/
     include: [private/moviesrss.yml]
     inputs:
       - html:
