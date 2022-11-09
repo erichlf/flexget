@@ -13,6 +13,12 @@ schedules:
   - tasks: [MoviesQueue]
     interval:
       hours: 24
+  - tasks: [ToMKVQueue]
+    interval:
+      weeks: 4
+  - tasks: [MKVMovies]
+    interval:
+      days: 1
 
 tasks:
   TV:
@@ -28,6 +34,11 @@ tasks:
       - /media/NFS/Media-NAS/Videos/Movies/
       - /media/NFS/Media-NAS/Videos/To.Watch/Movies/
 
+  MKVMovies:
+    template:
+      - main
+      - tomkv
+
   MoviesQueue:
     trakt_list:
       username: lvleph
@@ -37,6 +48,18 @@ tasks:
     list_add:
       - movie_list: MOVIES
     accept_all: yes
+
+  ToMKVQueue:
+    filesystem:
+      path:
+        - /media/NFS/Media-NAS/Videos/Movies
+      retrieve: files
+      regexp: '.+\.(avi|mp4|m4v)$'
+    accept_all: yes
+    trakt_lookup: yes
+    list_add:
+      - movie_list: TOMKV
+    seen: local
 
 templates:
   main:
@@ -50,17 +73,12 @@ templates:
         - \b[Xx]vid: {from: title}
     content_filter:
       require: '*.mkv'
-      reject:
-        - '*.avi'
-        - '*.m4v'
-        - '*.mp4'
-        - '*.rar'
-        - '*.wmv'
-        - 'password.txt'
-        - '*CD1*'
     set:
       ratio: 3.
     torrent_alive: 1
+    convert_magnet:
+      timeout: 10 seconds
+      force: yes
 
   tv:
     trakt_lookup: yes
@@ -97,7 +115,7 @@ templates:
           type: shows
 
   movies:
-    trakt_lookup: yes
+    trakt_lookup: no
     proper_movies: yes
     content_size:
       max: 8000
@@ -121,3 +139,29 @@ templates:
       from:
         - movie_list: MOVIES
       remove_on_match: yes
+
+  tomkv:
+    trakt_lookup: yes
+    proper_movies: yes
+    content_size:
+      max: 8000
+      strict: no
+    set:
+      quality: dvdscr+
+      target: 720p-1080p ac3+ h264+
+      label: Movies
+      path: /share/Public/Videos/To.Watch/Movies/
+    discover:
+      what:
+        - movie_list: TOMKV
+      from:
+        - rarbg:
+            category: [17, 44]
+        - piratebay:
+            category: 207
+      release_estimations: ignore  # because blu-ray.org is screwing this up
+    list_match:
+      from:
+        - movie_list: TOMKV
+    seen: local
+
