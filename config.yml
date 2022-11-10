@@ -40,11 +40,7 @@ tasks:
       - avi2mkv
 
   MoviesQueue:
-    trakt_list:
-      username: lvleph
-      account: lvleph
-      list: watchlist
-      type: movies
+    include: [private/trakt.yml]
     list_add:
       - movie_list: MOVIES
     accept_all: yes
