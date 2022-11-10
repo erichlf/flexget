@@ -13,10 +13,10 @@ schedules:
   - tasks: [MoviesQueue]
     interval:
       hours: 24
-  - tasks: [ToMKVQueue]
+  - tasks: [AVI2MKVQueue]
     interval:
       weeks: 4
-  - tasks: [MKVMovies]
+  - tasks: [AVI2MKV]
     interval:
       days: 1
 
@@ -34,10 +34,10 @@ tasks:
       - /media/NFS/Media-NAS/Videos/Movies/
       - /media/NFS/Media-NAS/Videos/To.Watch/Movies/
 
-  MKVMovies:
+  AVI2MKV:
     template:
       - main
-      - tomkv
+      - avi2mkv
 
   MoviesQueue:
     trakt_list:
@@ -49,16 +49,16 @@ tasks:
       - movie_list: MOVIES
     accept_all: yes
 
-  ToMKVQueue:
+  AVI2MKVQueue:
     filesystem:
       path:
         - /media/NFS/Media-NAS/Videos/Movies
       retrieve: files
-      regexp: '.+\.(avi|mp4|m4v)$'
-    accept_all: yes
+      regexp: '.+\.avi$'
     trakt_lookup: yes
+    accept_all: yes
     list_add:
-      - movie_list: TOMKV
+      - movie_list: AVI2MKV
     seen: local
 
 templates:
@@ -90,7 +90,7 @@ templates:
       upgrade: no
       timeframe: 30 minute
       type: shows
-      quality: 720p-1080p hdtv+
+      quality: 1080p hdtv+
     content_size:
       max: 5000
       strict: no
@@ -106,7 +106,7 @@ templates:
       - rss: https://rarbg.to/rssdd.php?category=18%3B41
     configure_series:
       settings:
-        target: 720p-1080p hdtv+
+        target: 1080p hdtv+
       from:
         trakt_list:
           username: lvleph
@@ -118,11 +118,12 @@ templates:
     trakt_lookup: no
     proper_movies: yes
     content_size:
-      max: 8000
+      max: 10000
+      min: 2000
       strict: no
     set:
       quality: dvdscr+
-      target: 720p-1080p ac3+ h264+
+      target: 1080p ac3+ h264+
       label: Movies
       path: /share/Public/Videos/To.Watch/Movies/
     include: [private/moviesrss.yml]
@@ -140,20 +141,21 @@ templates:
         - movie_list: MOVIES
       remove_on_match: yes
 
-  tomkv:
+  avi2mkv:
     trakt_lookup: yes
     proper_movies: yes
     content_size:
-      max: 8000
+      max: 10000
+      min: 2000
       strict: no
     set:
       quality: dvdscr+
-      target: 720p-1080p ac3+ h264+
+      target: 1080p ac3+ h264+
       label: Movies
-      path: /share/Public/Videos/To.Watch/Movies/
+      path: /share/Public/Videos/To.Watch/Movies/ToMKV
     discover:
       what:
-        - movie_list: TOMKV
+        - movie_list: AVI2MKV
       from:
         - rarbg:
             category: [17, 44]
@@ -162,6 +164,6 @@ templates:
       release_estimations: ignore  # because blu-ray.org is screwing this up
     list_match:
       from:
-        - movie_list: TOMKV
+        - movie_list: AVI2MKV
     seen: local
 
