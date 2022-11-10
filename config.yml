@@ -95,15 +95,6 @@ templates:
       max: 5000
       strict: no
     include: [private/tvrss.yml]
-    inputs:
-      - html:
-          url: https://thepiratebay.org/browse/208/{{i}}/3/0
-          links_re: [magnet]
-          title_from: url
-          increment:
-            from: 0
-            to: 3
-      - rss: https://rarbg.to/rssdd.php?category=18%3B41
     configure_series:
       settings:
         target: 1080p hdtv+
@@ -127,15 +118,6 @@ templates:
       label: Movies
       path: /share/Public/Videos/To.Watch/Movies/
     include: [private/moviesrss.yml]
-    inputs:
-      - html:
-          url: https://thepiratebay.org/browse/207/{{i}}/3/0
-          links_re: [magnet]
-          title_from: url
-          increment:
-            from: 0
-            to: 3
-      - rss: https://rarbg.to/rssdd.php?category=17%3B44
     list_match:
       from:
         - movie_list: MOVIES
