@@ -40,7 +40,11 @@ tasks:
       - avi2mkv
 
   MoviesQueue:
-    include: [private/trakt.yml]
+    trakt_list:
+      username: '{? trakt_user ?}'
+      account: '{? trakt_account ?}'
+      list: watchlist
+      type: movies
     list_add:
       - movie_list: MOVIES
     accept_all: yes
@@ -96,8 +100,8 @@ templates:
         target: 1080p hdtv+
       from:
         trakt_list:
-          username: lvleph
-          account: lvleph
+          username: '{? trakt_user ?}'
+          account: '{? trakt_account ?}'
           list: TV
           type: shows
 
