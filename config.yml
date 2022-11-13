@@ -139,6 +139,12 @@ templates:
       what:
         - movie_list: AVI2MKV
       from:
+        - torrentday:
+            uid: '{? td_uid ?}'
+            passkey: '{? td_passkey ?}'
+            cfduid: '{? td_cfduid ?}'
+            rss_key: '{? td_rss_key ?}'
+            category: [movHD, movX265]
         - rarbg:
             category: [17, 44]
         - piratebay:
