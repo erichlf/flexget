@@ -87,7 +87,7 @@ templates:
     trakt_lookup: yes
     set:
       label: tv
-      path: /share/Public/Videos/To.Watch/TV/
+      path: /To.Watch/TV/
       specials: no
       propers: yes
       upgrade: no
@@ -119,7 +119,7 @@ templates:
       quality: dvdscr+
       target: 1080p ac3+ h264+
       label: Movies
-      path: /share/Public/Videos/To.Watch/Movies/
+      path: /To.Watch/Movies/
     include: [private/moviesrss.yml]
     list_match:
       from:
@@ -137,7 +137,7 @@ templates:
       quality: dvdscr+
       target: 1080p ac3+ h264+
       label: Movies
-      path: /share/Public/Videos/To.Watch/Movies/ToMKV
+      path: /To.Watch/Movies/ToMKV
     discover:
       what:
         - movie_list: AVI2MKV
