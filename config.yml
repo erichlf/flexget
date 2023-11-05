@@ -26,16 +26,16 @@ tasks:
       - main
       - tv
     exists_series:
-      - /media/NFS/Media-NAS/Videos/Series/
-      - /media/NFS/Media-NAS/Videos/To.Watch/TV/ 
+      - /Videos/Series/
+      - /Videos/To.Watch/TV/ 
 
   Movies:
     template:
       - main
       - movies
     exists_movie:
-      - /media/NFS/Media-NAS/Videos/Movies/
-      - /media/NFS/Media-NAS/Videos/To.Watch/Movies/
+      - /Videos/Movies/
+      - /Videos/To.Watch/Movies/
 
   AVI2MKV:
     template:
@@ -55,7 +55,7 @@ tasks:
   AVI2MKVQueue:
     filesystem:
       path:
-        - /media/NFS/Media-NAS/Videos/Movies
+        - /Videos/Movies
       retrieve: files
       regexp: '.+\.avi$'
     trakt_lookup: yes
@@ -86,8 +86,8 @@ templates:
   tv:
     trakt_lookup: yes
     set:
-      label: tv
-      path: /To.Watch/TV/
+      label: TV
+      path: /TV/
       specials: no
       propers: yes
       upgrade: no
@@ -119,7 +119,7 @@ templates:
       quality: dvdscr+
       target: 1080p ac3+ h264+
       label: Movies
-      path: /To.Watch/Movies/
+      path: /Movies/
     include: [private/moviesrss.yml]
     list_match:
       from:
@@ -137,7 +137,7 @@ templates:
       quality: dvdscr+
       target: 1080p ac3+ h264+
       label: Movies
-      path: /To.Watch/Movies/ToMKV
+      path: /Movies/ToMKV
     discover:
       what:
         - movie_list: AVI2MKV

@@ -8,3 +8,4 @@ temp/
 cached_resources/
 *.bak
 converted/
+db-config.sqlite-journal
