@@ -9,3 +9,5 @@ cached_resources/
 *.bak
 converted/
 db-config.sqlite-journal
+.cache
+.bash_history
