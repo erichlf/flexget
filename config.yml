@@ -87,7 +87,7 @@ templates:
     trakt_lookup: yes
     set:
       label: TV
-      path: /TV/
+      path: /TV/{{ tvdb_series_name | re_replace('[:.?!,]', '.')}}/
       propers: yes
       upgrade: no
       timeframe: 30 minute
