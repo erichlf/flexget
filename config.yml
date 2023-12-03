@@ -88,7 +88,6 @@ templates:
     set:
       label: TV
       path: /TV/
-      specials: no
       propers: yes
       upgrade: no
       timeframe: 30 minute
@@ -119,7 +118,7 @@ templates:
       strict: no
     set:
       quality: dvdscr+
-      target: 1080p ac3+ h264+
+      target: 1080p+ ac3+ h264+
       label: Movies
       path: /Movies/
     include: [private/moviesrss.yml]
@@ -137,7 +136,7 @@ templates:
       strict: no
     set:
       quality: dvdscr+
-      target: 1080p ac3+ h264+
+      target: 1080p+ ac3+ h264+
       label: Movies
       path: /Movies/ToMKV
     discover:
