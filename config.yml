@@ -87,15 +87,12 @@ templates:
     trakt_lookup: yes
     set:
       label: TV
-      thetvdb_lookup: yes
-      path: /TV/{{ tvdb_series_name | re_replace('[:.?!,]', '.')}}/
+      path: "/TV/{{ series_name|replace(' ', '.') }}"
       propers: yes
       upgrade: no
       timeframe: 30 minute
       type: shows
       quality: 1080p hdtv+
-      main_file_only: yes
-      content_filename: "{{ tvdb_series_name }}.S{{ tvdb_season|pad(2) }}E{{ tvdb_episode|pad(2) }}.{{ tvdb_ep_name|default('Missing Title') }}"
     content_size:
       max: 5000
       strict: no
