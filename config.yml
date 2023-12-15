@@ -26,16 +26,18 @@ tasks:
       - main
       - tv
     exists_series:
-      - /Videos/Series/
-      - /Videos/To.Watch/TV/ 
+      - '/Videos/Series/{{ series_name }}'
+      - '/Videos/To.Watch/TV/{{ series_name}}'
 
   Movies:
     template:
       - main
       - movies
     exists_movie:
-      - /Videos/Movies/
-      - /Videos/To.Watch/Movies/
+      path:
+        - /Videos/Movies/
+        - /Videos/To.Watch/Movies/
+      type: files
 
   AVI2MKV:
     template:
@@ -66,7 +68,7 @@ tasks:
 
 templates:
   main:
-    include: [private/transmission.yml]
+    include: [private/qbittorrent.yml]
     regexp:
       reject:
         - \btrailer\b: {from: title}
