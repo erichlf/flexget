@@ -26,8 +26,8 @@ tasks:
       - main
       - tv
     exists_series:
-      - '/Videos/Series/{{ series_name }}'
-      - '/Videos/To.Watch/TV/{{ series_name}}'
+      - "/Videos/Series/{{ series_name|replace(' ', '.') }}"
+      - "/Videos/To.Watch/TV/{{ series_name|replace(' ', '.') }}"
 
   Movies:
     template:
