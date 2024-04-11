@@ -21,6 +21,26 @@ schedules:
       days: 1
 
 tasks:
+  TV_DB_Seed:
+    # The filesystem plugin will find all of your existing episodes
+    filesystem:
+      regexp: .*(avi|mkv|mp4)$
+      path: [/Videos/Series, /Videos/To.Watch/TV]
+      recursive: yes
+      retrieve: files
+    template: tv
+    manual: yes  # We use the manual plugin so that this task only runs when explicitly called
+
+  Movie_DB_Seed:
+    # The filesystem plugin will find all of your existing episodes
+    filesystem:
+      regexp: .*(avi|mkv|mp4)$
+      path: [/Videos/Movies, /Videos/To.Watch/Movies]
+      recursive: yes
+      retrieve: files
+    template: movies
+    manual: yes  # We use the manual plugin so that this task only runs when explicitly called
+
   TV:
     template:
       - main
