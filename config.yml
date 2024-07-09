@@ -137,8 +137,8 @@ templates:
       min: 2000
       strict: no
     set:
-      quality: dvdscr+
-      target: 1080p+ ac3+ h264+
+      quality: webrip+
+      target: 1080p+ webrip+ ac3+ h264+
       label: Movies
       path: /Movies/
     include: [private/moviesrss.yml]
@@ -155,7 +155,7 @@ templates:
       min: 2000
       strict: no
     set:
-      quality: dvdscr+
+      quality: webrip+
       target: 1080p+ ac3+ h264+
       label: Movies
       path: /Movies/ToMKV
