@@ -91,6 +91,7 @@ templates:
     include: [private/qbittorrent.yml]
     regexp:
       reject:
+        - \b(telesync|TELESYNC)\b: {from: title}
         - \btrailer\b: {from: title}
         - \b(HC|hc)\b: {from: title}
         - \b(cam|CAM)\b: {from: title}
